@@ -1,0 +1,14 @@
+{
+    "name": "@repraze/apps",
+    "version": "1.0.0",
+    "description": "Repraze Apps Monorepo",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "workspaces": [
+        "packages/*"
+    ],
+    "author": "Thomas Dubosc (https://repraze.com)",
+    "license": "MIT"
+}
