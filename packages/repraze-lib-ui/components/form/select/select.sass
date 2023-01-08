@@ -1,0 +1,58 @@
+.select
+    height: 2.5em
+    display: inline-block
+    position: relative
+    width: 100%
+    max-width: 100%
+    font-size: 1rem
+
+    select
+        @extend %input-base
+        display: block
+        cursor: pointer
+        padding-right: calc(2.5em - 1px) // has icon
+
+    .select-action
+        color: $input-color
+        display: block
+        position: absolute
+        top: 0
+        right: 0
+        pointer-events: none
+        .icon
+            height: 2.5em
+            width: 2.5em
+
+    &:hover
+        .select-action
+            color: $primary-color
+
+    // sizings
+    &.small
+        font-size: 0.75rem
+    &.normal
+        font-size: 1rem
+    &.medium
+        font-size: 1.25rem
+    &.large
+        font-size: 1.5rem
+
+    // colors
+    @each $name, $params in $colors
+        $color: nth($params, 1)
+        &.#{$name}
+            select
+                border-color: $color
+
+                &:active,
+                &:focus
+                    box-shadow: 0 0 0 0.125rem darken(fade-out($color, 0.66), 3%)
+
+            &.active,
+            &.focus
+                select
+                    box-shadow: 0 0 0 0.125rem darken(fade-out($color, 0.66), 3%)
+
+            &:hover
+                .select-action
+                    color: $color

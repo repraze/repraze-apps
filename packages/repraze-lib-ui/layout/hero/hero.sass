@@ -1,0 +1,30 @@
+$hero-height: 3.125rem !default
+$hero-background-color: $container-color !default
+$hero-border-color: $component-secondary-color !default
+
+.hero
+    display: flex
+    align-items: center
+    position: relative
+    width: 100%
+    background-color: $hero-background-color
+    min-height: $hero-height
+    border-bottom: 1px solid $hero-border-color
+    overflow: hidden
+
+    padding-top: 1rem
+    padding-bottom: 1rem
+
+    +media-from-md
+        padding-top: 2rem
+        padding-bottom: 2rem
+
+    // sizing
+    &.small
+        font-size: 0.75rem
+    &.normal
+        font-size: 1rem
+    &.medium
+        font-size: 1.25rem
+    &.large
+        font-size: 1.5rem

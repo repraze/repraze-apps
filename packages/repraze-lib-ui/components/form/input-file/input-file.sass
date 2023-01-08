@@ -1,0 +1,91 @@
+.input-file
+    position: relative
+    overflow: hidden
+
+    input[type=file]
+        z-index: -1
+        position: absolute
+        display: block
+        left: 0
+        right: 0
+        bottom: 0
+        top: 0
+        width: 100%
+        height: 100%
+        border: 0 none
+        outline: none
+        opacity: 0
+
+    input:disabled + .field
+        .input-file-handle
+            opacity: 50%
+            cursor: default
+            pointer-events: none
+
+    .input-file-handle
+        z-index: 2
+        box-shadow: none !important
+
+    .input-file-name
+        @extend %input-base-readonly
+        z-index: 1
+        text-overflow: ellipsis
+        position: relative
+        cursor: pointer
+
+    &:hover,
+    &.hover
+        .input-file-name
+            border-color: $input-hover-border-color
+
+    &:active:has(input:not(:disabled)),
+    &.active,
+    &:focus:has(input:not(:disabled)),
+    &.focus
+        box-shadow: 0 0 0 0.125rem darken(fade-out($primary-color, 0.66), 3%)
+        .input-file-name
+            border-color: $input-focus-border-color
+
+    // sizings
+    &.small
+        .input-file-name
+            font-size: 0.75rem
+    &.normal
+        .input-file-name
+            font-size: 1rem
+    &.medium
+        .input-file-name
+            font-size: 1.25rem
+    &.large
+        .input-file-name
+            font-size: 1.5rem
+
+    // colors
+    @each $name, $params in $colors
+        $color: nth($params, 1)
+        &.#{$name}
+            .input-file-name
+                border-color: $color
+
+            &:active,
+            &.active,
+            &:focus,
+            &.focus
+                box-shadow: 0 0 0 0.125rem darken(fade-out($color, 0.66), 3%)
+                .input-file-name
+                    border-color: $color
+
+    // special
+    &.dropper
+        .input-file-handle
+            width: 100%
+            max-width: 100%
+            display: flex
+            align-items: center
+            flex-direction: column
+            height: auto
+            white-space: nowrap
+            padding: 1em
+
+            .icon
+                margin: 0

@@ -1,0 +1,118 @@
+$navbar-height: 3.125rem !default
+$navbar-background-color: $background-color !default
+$navbar-border-color: $component-secondary-color !default
+
+.navbar
+    display: flex
+    align-items: stretch
+    flex-direction: row
+    flex-wrap: nowrap
+    background-color: $navbar-background-color
+    // background-color: rgba($navbar-background-color, 20%)
+    // backdrop-filter: blur(1rem)
+    min-height: $navbar-height
+    position: relative
+    z-index: 30
+    width: 100%
+    //box-shadow: 0 2px 4px rgb(18 18 26 / 20%)
+    border-bottom: 1px solid $navbar-border-color
+
+    color: $heading-font-color
+    font-family: $heading-font-family
+    a
+        color: $heading-font-color
+        &:hover,
+        &:active
+            color: $primary-color
+
+body.fixed-navbar
+    padding-top: $navbar-height
+
+    .navbar.fixed
+        position: fixed
+        top: 0
+        width: 100%
+
+body.fixed-navbar-until-md
+    +media-until-md
+        padding-top: $navbar-height
+
+        .navbar.fixed
+            position: fixed
+            top: 0
+            width: 100%
+
+.navbar-start,
+.navbar-end,
+.navbar-middle
+    display: flex
+    align-items: stretch
+    flex-direction: row
+    flex-wrap: nowrap
+
+.navbar-start
+    justify-content: flex-start
+    margin-right: auto
+
+.navbar-end
+    justify-content: flex-end
+    margin-left: auto
+
+.navbar-end
+    justify-content: center
+
+.navbar-brand,
+.navbar-menu
+    display: flex
+    align-items: stretch
+    flex-direction: row
+    flex-wrap: nowrap
+
+.navbar-brand
+    & img, & svg
+        width: auto
+        height: 1.625rem // 26px
+    & svg
+        fill: currentColor
+
+// items
+
+.navbar-item
+    display: flex
+    flex-grow: 0
+    flex-shrink: 0
+    line-height: 1.5
+    padding: 0.5rem 0.75rem
+    position: relative
+    align-items: center
+
+    .navbar-link
+        display: flex
+        line-height: 1.5
+        padding: 0.5rem 0.75rem
+        position: relative
+        align-items: center
+
+    &.dropdown
+        align-items: stretch
+        padding: 0rem
+
+    .navbar-dropdown
+        background-color: $navbar-background-color
+        border-left: 1px solid $navbar-border-color
+        border-right: 1px solid $navbar-border-color
+        border-bottom: 1px solid $navbar-border-color
+        box-shadow: $shadow
+        display: none
+        font-size: .875rem
+        top: 100%
+        left: 0
+        min-width: 100%
+        position: absolute
+        z-index: 20
+
+    &:hover > .navbar-dropdown
+        display: block
+
+    // & img, & svg
+    //     max-height: 1.75rem

@@ -1,0 +1,107 @@
+@import "./variables.sass"
+
+$media-fraction: 0.1px
+
+// until / from
+
+// small
+=media-until-sm
+    @media screen and (max-width: $media-sm - $media-fraction)
+        @content
+
+=media-from-sm
+    @media screen and (min-width: $media-sm)
+        @content
+
+// medium
+=media-until-md
+    @media screen and (max-width: $media-md - $media-fraction)
+        @content
+
+=media-from-md
+    @media screen and (min-width: $media-md)
+        @content
+
+// large
+=media-until-lg
+    @media screen and (max-width: $media-lg - $media-fraction)
+        @content
+
+=media-from-lg
+    @media screen and (min-width: $media-lg)
+        @content
+
+// extra large
+=media-until-xl
+    @media screen and (max-width: $media-xl - $media-fraction)
+        @content
+
+=media-from-xl
+    @media screen and (min-width: $media-xl)
+        @content
+
+// ranges
+
+// small
+=media-sm-to-md
+    @media screen and (min-width: $media-sm) and (max-width: $media-md - $media-fraction)
+        @content
+
+=media-sm-to-lg
+    @media screen and (min-width: $media-sm) and (max-width: $media-lg - $media-fraction)
+        @content
+
+=media-sm-to-xl
+    @media screen and (min-width: $media-sm) and (max-width: $media-xl - $media-fraction)
+        @content
+
+// medium
+
+=media-md-to-lg
+    @media screen and (min-width: $media-md) and (max-width: $media-lg - $media-fraction)
+
+=media-md-to-xl
+    @media screen and (min-width: $media-md) and (max-width: $media-xl - $media-fraction)
+
+// large
+
+=media-lg-to-xl
+    @media screen and (min-width: $media-lg) and (max-width: $media-xl - $media-fraction)
+
+// visibility helpers
+
+// small - $media-sm
+.media-until-sm
+    +media-from-sm
+        display: none !important
+
+.media-from-sm
+    +media-until-sm
+        display: none !important
+
+// medium - $media-md
+.media-until-md
+    +media-from-md
+        display: none !important
+
+.media-from-md
+    +media-until-md
+        display: none !important
+
+// large - $media-lg
+.media-until-lg
+    +media-from-lg
+        display: none !important
+
+.media-from-lg
+    +media-until-lg
+        display: none !important
+
+// extra large - $media-xl
+.media-until-xl
+    +media-from-xl
+        display: none !important
+
+.media-from-xl
+    +media-until-xl
+        display: none !important

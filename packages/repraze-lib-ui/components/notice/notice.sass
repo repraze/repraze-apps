@@ -1,0 +1,42 @@
+$notice-color: $font-color !default
+$notice-background-color: $component-secondary-color !default
+$notice-padding-horizontal: 1em !default
+$notice-padding-vertical: 0.5em !default
+$notice-margin: 1em !default
+
+.notice-container
+    display: flex
+    justify-content: flex-start
+    align-items: stretch
+    flex-direction: column
+    position: fixed
+    top: $notice-margin
+    left: $notice-margin
+    right: $notice-margin
+    z-index: 40
+
+.notice
+    position: relative
+    display: block
+    background-color: $notice-background-color
+    color: $notice-color
+    padding-left: $notice-padding-horizontal
+    padding-right: $notice-padding-horizontal + 2em // space for delete
+    padding-top: $notice-padding-vertical
+    padding-bottom: $notice-padding-vertical
+
+    &:not(:last-child)
+        margin-bottom: $notice-margin
+
+    // colors
+    @each $name, $params in $colors
+        $color: nth($params, 1)
+        $color-invert: nth($params, 2)
+        &.#{$name}
+            background-color: $color
+            color: $color-invert
+
+    .delete
+        position: absolute
+        top: 0
+        right: 0

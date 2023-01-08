@@ -1,0 +1,90 @@
+$tag-color: $font-color !default
+$tag-background-color: $component-secondary-color !default
+$tag-padding-horizontal: 0.75em
+
+.tag
+    align-items: center
+    background-color: $tag-background-color
+    color: $tag-color
+    display: inline-flex
+    font-size: 0.75rem
+    height: 2em
+    justify-content: center
+    line-height: 1.5em
+    padding-left: $tag-padding-horizontal
+    padding-right: $tag-padding-horizontal
+    white-space: nowrap
+
+    &.action
+        color: $tag-color
+        padding-left: 0
+        padding-right: 0
+        width: 2em
+        cursor: pointer
+
+        // states
+        &:hover,
+        &.hover,
+        &:focus,
+        &.focus
+            background-color: darken($tag-background-color, 3%)
+            color: $tag-color
+        &:focus,
+        &.focus
+            box-shadow: 0 0 0 0.125rem darken(fade-out($primary-color, 0.66), 3%)
+        &:active,
+        &.active
+            background-color: darken($tag-background-color, 7%)
+            color: $tag-color
+
+    // sizings
+    &.small
+        font-size: 0.5rem
+    &.normal
+        font-size: 0.75rem
+    &.medium
+        font-size: 1.0rem
+    &.large
+        font-size: 1.25rem
+
+    // colors
+    @each $name, $params in $colors
+        $color: nth($params, 1)
+        $color-invert: nth($params, 2)
+        &.#{$name}
+            background-color: $color
+            color: $color-invert
+
+            &.action
+                &:hover,
+                &.hover,
+                &:focus,
+                &.focus
+                    background-color: darken(fade-in($color, 0.8), 3%)
+                    color: $color-invert
+                &:focus,
+                &.focus
+                    box-shadow: 0 0 0 0.125rem darken(fade-out($color, 0.66), 3%)
+                &:active,
+                &.active
+                    background-color: darken(fade-in($color, 0.8), 7%)
+                    color: $color-invert
+
+.tags
+    align-items: center
+    display: flex
+    flex-wrap: wrap
+    justify-content: flex-start
+    margin-bottom: -0.5em
+
+    .tag
+        margin-bottom: 0.5rem
+        &:not(:last-child)
+            margin-right: 0.5rem
+
+    &:not(:last-child)
+        margin-bottom: $component-spacing - 0.5em
+
+    &.combined
+        .tag
+            margin-right: 0

@@ -1,0 +1,28 @@
+@use "sass:math"
+
+.card
+    display: flex
+    text-align: inherit
+    justify-content: flex-start
+    flex-direction: row
+    max-width: 100%
+
+    // gaps
+    @for $i from 0 through 4
+        &.gap-#{$i}
+            gap: #{math.div($i,2)}rem
+
+    .card-right,
+    .card-left
+        flex-basis: auto
+        flex-grow: 0
+        flex-shrink: 0
+
+    .card-content
+        flex-basis: auto
+        flex-grow: 1
+        flex-shrink: 1
+        text-align: inherit
+
+    & + &
+        margin-top: 0.75rem

@@ -1,0 +1,124 @@
+.field
+    display: flex
+    justify-content: flex-start
+    flex-direction: row
+    flex-wrap: wrap
+
+    &.grouped
+        &.centered
+            justify-content: center
+
+        &.right
+            justify-content: flex-end
+
+        & > .control:not(:last-child)
+            margin-right: 0.75rem
+
+    // sizing
+    &.expanded
+        flex-grow: 1
+        flex-shrink: 1
+
+.fields
+    display: flex
+    flex-direction: column
+    justify-content: flex-start
+    align-items: stretch
+
+    &.inline
+        flex-direction: row
+        width: 100%
+        .field:not(:last-child)
+            margin-bottom: 0
+            margin-right: 0.75rem
+
+    &.wrapped
+        flex-wrap: wrap
+        margin-bottom: -0.75rem
+        .field:not(:last-child),
+        .field:last-child
+            margin-bottom: 0.75rem
+
+    .field:not(:last-child)
+        margin-bottom: 0.75rem
+
+.control
+    position: relative
+
+    // sizing
+    &.expanded
+        flex-grow: 1
+        flex-shrink: 1
+        max-width: 100%
+
+    // left & right addon
+    &.left,
+    &.right
+        & > .input,
+        & > .select
+            &:focus
+                & ~ .icon
+                    color: $input-color
+            // sizings based on input
+            &.small
+                & ~ .icon
+                    font-size: 0.75rem
+            &.normal
+                & ~ .icon
+                    font-size: 1rem
+            &.medium
+                & ~ .icon
+                    font-size: 1.25rem
+            &.large
+                & ~ .icon
+                    font-size: 1.5rem
+        .icon
+            color: $input-border-color
+    &.left > .input,
+    &.left > .select select
+        padding-left: calc(2.5em - 1px)
+    &.right > .input
+        padding-right: calc(2.5em - 1px)
+    .icon-left,
+    .icon-right
+        position: absolute
+        top: 0
+        height: 2.5em
+        width: 2.5em
+        display: inline-flex
+        align-items: center
+        justify-content: center
+        pointer-events: none
+    .icon-left
+        left: 0
+    .icon-right
+        right: 0
+
+    // dropdown
+    .input-drop
+        z-index: 4
+        //position: absolute
+        position: fixed
+        top: 50%
+        left: 50%
+        transform: translate(-50%, -50%)
+        background-color: white
+        box-shadow: $shadow
+        padding: 0.75em
+    .input-drop-cover
+        z-index: 3
+        position: fixed
+        top: 0
+        right: 0
+        bottom: 0
+        left: 0
+        background-color: rgba(0, 0, 0, 0.4)
+
+    +media-from-md
+        .input-drop
+            position: absolute
+            transform: none
+            top: inherit
+            left: 0
+        .input-drop-cover
+            background-color: transparent

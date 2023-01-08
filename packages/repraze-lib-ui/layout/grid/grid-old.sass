@@ -1,0 +1,60 @@
+@use "sass:math"
+
+$grid-spacing: 0.5rem
+
+.grid
+    display: flex
+    position: relative
+    margin: -$grid-spacing
+    flex-wrap: wrap
+    flex-direction: row
+    align-items: stretch
+
+$divisions: full, half, third, quarter, fifth //, sixth, seventh, eighth // nerfed for speed
+$numbers: one, two, three, four, five //, six, seven, eight // nerfed for speed
+
+.grid-block
+    display: flex
+    padding: $grid-spacing
+
+    // regular sizes
+    @for $i from 1 through length($divisions)
+        $division: nth($divisions, $i)
+
+        &.#{$division}
+            flex: none
+            width: math.div(1, $i) * 100%
+
+        @if $i > 2
+            @for $j from 2 through min($i - 1, length($numbers))
+                $number: nth($numbers, $j)
+                &.#{$number}-#{$division}s
+                    flex: none
+                    width: math.div($j, $i) * 100%
+
+    // responsive sizes
+    @for $s from 1 through length($media-sizes)
+        $size: nth($media-sizes, $s)
+        $size-name: nth($size, 1)
+        $size-value: nth($size, 2)
+
+        @media screen and (min-width: $size-value)
+            @for $i from 1 through length($divisions)
+                $division: nth($divisions, $i)
+
+                &.#{$size-name}-#{$division}
+                    flex: none
+                    width: math.div(1, $i) * 100%
+
+                @if $i > 2
+                    @for $j from 2 through min($i - 1, length($numbers))
+                        $number: nth($numbers, $j)
+                        &.#{$size-name}-#{$number}-#{$division}s
+                            flex: none
+                            width: math.div($j, $i) * 100%
+
+.grid-tile
+    flex-basis: 0
+    flex-grow: 1
+    flex-shrink: 1
+    overflow: hidden

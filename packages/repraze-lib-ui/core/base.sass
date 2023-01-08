@@ -1,0 +1,78 @@
+@import "./sizing.sass"
+
+$body-font-size: 1rem !default
+$body-line-height: 1.5em !default
+$body-min-width: 300px !default
+
+html
+    margin: 0
+    padding: 0
+    font-family: $font-family
+    font-weight: 400
+    font-size: $body-font-size
+    min-width: $body-min-width
+    text-rendering: optimizeLegibility
+    text-size-adjust: 100%
+
+body
+    margin: 0
+    padding: 0
+    color: $font-color
+    font-size: 1em
+    position: relative
+    background-color: $background-color
+    line-height: $body-line-height
+    display: flex
+    flex-direction: column
+    overflow-x: hidden
+    min-height: 100vh // extend body to full page at a minimum
+
+    &.no-scroll
+        position: absolute
+        height: 100vh
+        width: 100vw
+        overflow: hidden
+
+    &.no-scroll-until-md
+        +media-until-md
+            position: absolute
+            height: 100vh
+            width: 100vw
+            overflow: hidden
+
+*
+    box-sizing: border-box
+    outline: none
+    -webkit-tap-highlight-color: transparent
+    color-scheme: $color-scheme
+
+    & ::selection,
+    &::selection
+        text-shadow: none
+        background-color: $primary-color
+        color: $white
+
+a
+    color: inherit // base links are plain, check content links
+    cursor: pointer
+    text-decoration: none
+    &:hover,
+    &:active
+        color: $primary-color
+
+small
+    font-size: smaller
+
+// container
+
+.app-full-size
+    display: flex
+    flex-direction: column
+    flex-shrink: 0
+    flex-grow: 1
+    flex-basis: auto
+
+    .app-main-content
+        flex-shrink: 0
+        flex-grow: 1
+        flex-basis: auto

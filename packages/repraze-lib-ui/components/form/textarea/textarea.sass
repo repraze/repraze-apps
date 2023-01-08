@@ -1,0 +1,16 @@
+.textarea
+    @extend %input-base
+    max-width: 100%
+    min-width: 100%
+    resize: vertical
+    padding: $input-padding-horizontal
+
+    &.no-resize
+        resize: none
+
+    &[rows]
+        height: initial
+
+    &:not([rows])
+        max-height: 40em
+        min-height: 8em

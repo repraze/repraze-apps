@@ -1,0 +1,87 @@
+$pagination-link-color: $font-color !default
+$pagination-link-background-color: $component-secondary-color !default
+$pagination-link-padding-horizontal: calc(0.5em - 1px)
+$pagination-link-padding-vertical: calc(0.5em - 1px)
+$pagination-link-gap: 0.5em
+
+.pagination
+    display: flex
+    flex-direction: row
+    align-items: center
+    justify-content: center
+    text-align: center
+    gap: $pagination-link-gap
+
+    .pagination-previous
+        order: 1
+
+    .pagination-next
+        order: 2
+
+    .pagination-pages
+        order: 0
+        flex-grow: 1
+        flex-shrink: 1
+        display: flex
+        align-items: center
+        justify-content: flex-start
+        // justify-content: center
+        flex-wrap: wrap
+        flex-direction: row
+        margin: 0
+        gap: $pagination-link-gap
+
+        li
+            list-style: none
+            margin: 0
+
+    .pagination-previous,
+    .pagination-next,
+    .pagination-ellipsis,
+    .pagination-link
+        display: inline-flex
+        border: 1px solid transparent
+        justify-content: center
+        text-align: center
+        white-space: nowrap
+        padding-left: $pagination-link-padding-horizontal
+        padding-right: $pagination-link-padding-horizontal
+        padding-top: $pagination-link-padding-vertical
+        padding-bottom: $pagination-link-padding-vertical
+        font-size: 1rem
+        font-family: inherit
+        outline: none
+        height: 2.5em
+        min-width: 2.5em
+        max-width: 100%
+        line-height: 1.5
+        vertical-align: top
+
+    .pagination-previous,
+    .pagination-next,
+    .pagination-link
+        background-color: $pagination-link-background-color
+        color: $pagination-link-color
+        cursor: pointer
+
+        // states
+        &:hover,
+        &.hover,
+        &:focus,
+        &.focus
+            background-color: darken($button-background-color, 3%)
+        &:focus,
+        &.focus
+            box-shadow: 0 0 0 0.125rem darken(fade-out($primary-color, 0.66), 3%)
+        &:active,
+        &.active
+            background-color: darken($button-background-color, 7%)
+        &:disabled,
+        &.disabled
+            opacity: 50%
+            cursor: default
+            pointer-events: none
+
+        &.current
+            background-color: $primary-color
+            color: $white

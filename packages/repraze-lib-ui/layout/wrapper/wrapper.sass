@@ -1,0 +1,21 @@
+.wrapper
+    display: block
+    margin: 0 auto
+    width: 100%
+    max-width: $media-xl
+    padding: 0 1rem
+
+    +media-from-md
+        padding: 0 2rem
+
+    // widths
+    &.sm
+        max-width: $media-sm
+    &.md
+        max-width: $media-md
+    &.lg
+        max-width: $media-lg
+    &.xl
+        max-width: $media-xl
+    &.full
+        max-width: initial

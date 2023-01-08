@@ -1,0 +1,24 @@
+.label
+    color: $font-color
+    font-size: 1rem
+    font-weight: 700
+
+    &:not(:last-child)
+        margin-bottom: 0.5rem
+
+.input-label
+    color: $font-color
+    font-size: 1rem
+    font-weight: 700
+    position: relative
+    line-height: 2.5em
+    display: inline-block
+
+    white-space: nowrap
+    text-overflow: ellipsis
+
+    & > div
+        margin-right: 0.75rem
+
+    & + &
+        margin-left: 0.75rem

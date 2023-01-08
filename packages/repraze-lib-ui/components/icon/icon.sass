@@ -1,0 +1,65 @@
+.icon
+    align-items: center
+    display: inline-flex
+    justify-content: center
+    height: 1.5rem
+    width: 1.5rem
+    font-size: 1em
+
+    // sizings
+    &.small
+        font-size: 0.75rem
+    &.normal
+        font-size: 1rem
+    &.medium
+        font-size: 1.25rem
+    &.large
+        font-size: 1.5rem
+
+    // colors
+    @each $name, $params in $colors
+        $color: nth($params, 1)
+        &.#{$name}
+            color: $color
+
+.icons
+    // display: inline-block
+    height: 1.5rem
+    width: 1.5rem
+    // position: relative
+    // text-align: center
+
+%icon-text-container
+    align-items: flex-start
+    display: inline-flex
+    white-space: nowrap
+    text-overflow: ellipsis
+    vertical-align: top
+
+    & > .icon,
+    & >.icons
+        height: 1.5em
+        width: 1.5em
+
+    & > .icon,
+    & >.icons,
+    & >.icon-like
+        flex-grow: 0
+        flex-shrink: 0
+
+        &:first-child:last-child // only icon
+            margin-left: -0.25em
+            margin-right: -0.25em
+
+        &:first-child:not(:last-child) // left icon
+            margin-left: -0.25em
+            margin-right: 0.5em
+
+        &:last-child:not(:first-child) // right icon
+            margin-left: 0.5em
+            margin-right: -0.25em
+
+.icon-item
+    @extend %icon-text-container
+    color: inherit
+    line-height: 1.5rem

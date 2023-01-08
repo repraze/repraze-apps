@@ -1,0 +1,61 @@
+$tabs-color: $font-color !default
+$tabs-background-color: $component-secondary-color !default
+$tabs-padding-horizontal: 1em !default
+$tabs-padding-vertical: calc(0.5em - 1px) !default
+
+.tabs
+    @extend %space-content
+    display: flex
+    align-items: stretch
+    justify-content: space-between
+    overflow: hidden
+    overflow-x: auto
+    white-space: nowrap
+
+    ul
+        flex-grow: 1
+        flex-shrink: 0
+        display: flex
+        align-items: center
+        justify-content: flex-start
+        flex-direction: row
+        border-bottom: 1px solid $component-secondary-color
+
+.tab
+    display: block
+    flex-grow: 0
+    flex-shrink: 1
+
+    a
+        @extend %icon-text-container
+        // display: block
+        // white-space: nowrap
+        background-color: transparent
+        border-left: 1px solid transparent
+        border-right: 1px solid transparent
+        border-top: 1px solid transparent
+        margin-bottom: -1px
+        cursor: pointer
+        padding-left: $tabs-padding-horizontal
+        padding-right: $tabs-padding-horizontal
+        padding-top: $tabs-padding-vertical
+        padding-bottom: $tabs-padding-vertical
+
+    // states
+    &.active
+        a
+            background-color: $background-color
+            border-left-color: $component-secondary-color
+            border-right-color: $component-secondary-color
+            border-top-color: $component-secondary-color
+
+.tabs-panel
+    .tabs
+        position: relative
+        z-index: 2
+
+    .tabs-panel-content
+        position: relative
+        z-index: 1
+        // background-color: $container-color
+        // margin-top: -1px

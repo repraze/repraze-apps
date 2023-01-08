@@ -1,0 +1,32 @@
+$loader-background-color: $background-color !default
+$loader-image-color: $container-color !default
+
+.loader
+    display: inline-flex
+    justify-content: center
+    align-items: center
+    // color: $font-lighter-color
+
+    &.expanded
+        width: 100%
+        height: 100%
+
+.loader-container
+    background-image: linear-gradient(0deg, rgba($loader-image-color,1) 0%, rgba($loader-image-color,1) 10%, rgba($loader-image-color,0) 10%, rgba($loader-image-color,0) 90%, rgba($loader-image-color,1) 90%, rgba($loader-image-color,1) 100%)
+    background-size: 100% 200%
+    background-repeat: repeat-y
+    background-color: $loader-background-color
+    animation: loader-image 4s ease-in-out infinite, loader-color 0.5s ease-in-out infinite
+    animation-direction: alternate
+
+@keyframes loader-image
+    0%
+        background-position: 0% 200%
+    100%
+        background-position: 0% -100%
+
+@keyframes loader-color
+    0%
+        background-color: mix($loader-background-color, $loader-image-color, 10%)
+    100%
+        background-color: $loader-background-color

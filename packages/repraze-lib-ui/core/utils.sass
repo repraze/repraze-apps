@@ -1,0 +1,53 @@
+@use "sass:math"
+
+.text-left
+    text-align: left
+
+.text-center
+    text-align: center
+
+.text-right
+    text-align: right
+
+.text-narrow-line
+    line-height: 1em
+
+.text-ellipsis
+    text-overflow: ellipsis
+    white-space: nowrap
+    overflow-x: clip
+
+.font-regular
+    font-family: $font-family !important
+
+.font-heading
+    font-family: $heading-font-family !important
+
+.font-code
+    font-family: $code-font-family !important
+
+// colors
+@each $name, $params in $colors
+    $color: nth($params, 1)
+
+    .text-#{$name}
+        color: $color
+
+// extras
+.text-light
+    color: $font-light-color
+
+%space-content
+    &:not(:last-child)
+        margin-bottom: $component-spacing
+
+// specials
+
+@mixin checkerboard($size, $color1)
+    background-image: linear-gradient(45deg, $color1 25%, transparent 25%), linear-gradient(-45deg, $color1 25%, transparent 25%), linear-gradient(45deg, transparent 75%, $color1 75%), linear-gradient(-45deg, transparent 75%, $color1 75%)
+    background-size: $size $size
+    background-position: 0 0, 0 #{math.div($size, 2)}, #{math.div($size, 2)} #{math.div(-$size, 2)}, #{math.div(-$size, 2)} 0px
+
+.checkered
+    background-color: $container-color
+    @include checkerboard(20px, $background-color)

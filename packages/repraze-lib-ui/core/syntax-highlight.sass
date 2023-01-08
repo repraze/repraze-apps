@@ -1,0 +1,209 @@
+@use "sass:math"
+
+$code-prefix: "sc-" !default
+$code-color: $font-color !default
+// $code-font: $code-font-family !default
+$code-background: $container-color !default
+$code-border-color: $component-secondary-color !default
+$code-line-color: $font-lighter-color !default
+$code-highlight-background: $component-secondary-color !default
+$code-highlight-border: $primary-color !default
+$code-highlight-line-color: $font-color !default
+$code-spacing: 1rem !default
+$code-padding-horizontal: 0.75em !default
+$code-padding-vertical: 0.5em !default
+
+// general
+pre.#{$code-prefix}ch,
+code.#{$code-prefix}ch
+    color: $code-color
+    font-size: 13px
+    text-shadow: none
+    font-family: $code-font-family
+    direction: ltr
+    text-align: left
+    white-space: pre
+    word-spacing: normal
+    word-break: normal
+    line-height: 1.5
+    tab-size: 4
+    hyphens: none
+    background-color: $code-background
+    border: 1px solid $code-border-color
+
+pre.#{$code-prefix}ch > code
+    font-family: $code-font-family
+
+@media print
+    pre.#{$code-prefix}ch,
+    code.#{$code-prefix}ch
+        text-shadow: none
+
+pre
+    overflow-x: auto
+
+// code block
+pre.#{$code-prefix}ch
+    position: relative
+    padding: $code-padding-horizontal
+
+    & > code
+        position: relative
+        z-index: 1
+        float: left
+        min-width: 100%
+
+    .#{$code-prefix}line
+        display: block
+        padding-left: $code-padding-horizontal
+        padding-right: $code-padding-horizontal
+        margin-left: -$code-padding-horizontal
+        margin-right: -$code-padding-horizontal
+        border-left-width: 4px
+        border-left-color: transparent
+        border-left-style: solid
+
+        &.#{$code-prefix}highlight
+            margin-left: -$code-padding-horizontal
+            margin-right: -$code-padding-horizontal
+            background-color: $code-highlight-background
+            border-left-width: 4px
+            border-left-color: $code-highlight-border
+
+        &.#{$code-prefix}inserted
+            background-color: rgba(16, 185, 129, 0.2) // Set inserted line (+) color */
+
+        &.#{$code-prefix}deleted
+            background-color: rgba(239, 68, 68, 0.2) // Set deleted line (-) color */
+
+    &.#{$code-prefix}number-lines
+        .#{$code-prefix}line
+            &::before
+                display: inline-block
+                width: 1.5rem
+                text-align: right
+                margin-right: $code-padding-horizontal
+                margin-left: math.div(-$code-padding-horizontal, 2)
+                color: $code-line-color
+                content: attr(line)
+
+            &.#{$code-prefix}highlight
+                &::before
+                    color: $code-highlight-line-color
+
+// inline code
+:not(pre) > code.#{$code-prefix}ch
+    padding: .1em .3em
+
+// $code-token-comment: $font-lighter-color !default
+// $code-token-punctuation: #999999 !default
+// $code-token-property: $pink !default
+// $code-token-selector: $green !default
+// $code-token-operator: $red !default // brown?
+// $code-token-keyword: $purple !default
+// $code-token-function: $blue !default
+// $code-token-variable: $orange !default
+
+// tokens
+.#{$code-prefix}
+    &comment,
+    &quote
+        color: $font-lighter-color
+        font-style: italic
+
+    &doctag,
+    &formula,
+    &keyword
+        color: $purple
+
+    &deletion,
+    &name,
+    &section,
+    &selector-tag,
+    &regexp,
+    &subst
+        color: $orange
+
+    &addition,
+    &attribute,
+    &meta &string,
+    &string
+        color: $green
+
+    &attr,
+    &selector-attr,
+    &selector-class,
+    &selector-pseudo,
+    &template-variable,
+    &type,
+    &variable
+        color: $red
+
+    &bullet,
+    &link,
+    &meta,
+    &selector-id,
+    &symbol,
+    &title
+        color: $blue
+
+    &literal,
+    &number,
+    &built_in,
+    &class.#{$code-prefix}title,
+    &title.class_
+        color: $purple
+
+    &emphasis
+        font-style: italic
+
+    &strong
+        font-weight: 700
+
+    &link
+        text-decoration: underline
+
+// viewer
+.code-viewer
+    @extend %space-content
+
+    background-color: $code-background
+    border: 1px solid $code-border-color
+    font-family: $code-font-family
+
+    .code-heading
+        display: flex
+        flex-direction: row
+        flex-wrap: nowrap
+        border-bottom: 1px solid $code-border-color
+        font-family: $heading-font-family
+
+        .code-title
+            font-weight: 700
+            flex-grow: 1
+            flex-shrink: 0
+            flex-basis: 0
+            white-space: nowrap
+            overflow: hidden
+            text-overflow: ellipsis
+
+        .code-title,
+        .code-language
+            line-height: 1.5
+            padding-top: $code-padding-vertical
+            padding-bottom: $code-padding-vertical
+
+        .code-language
+            color: $code-line-color
+            text-transform: uppercase
+            padding-left: $code-padding-horizontal
+            padding-right: $code-padding-horizontal
+
+        .code-language,
+        .code-actions
+            flex-grow: 0
+            flex-shrink: 0
+
+    .#{$code-prefix}ch
+        border: 0 none
+        background-color: transparent

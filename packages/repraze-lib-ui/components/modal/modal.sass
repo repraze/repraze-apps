@@ -1,0 +1,84 @@
+$modal-background-color: $container-color !default
+$modal-border-color: $component-secondary-color !default
+$modal-padding-horizontal: 1rem !default
+$modal-padding-vertical: 1rem !default
+
+.modal-container
+    display: flex
+    justify-content: center
+    align-items: center
+    background-color: fade-out($background-color, 0.125)
+    position: fixed
+    width: 100%
+    height: 100%
+    top: 0
+    bottom: 0
+    left: 0
+    right: 0
+    z-index: 30
+
+.modal
+    position: relative
+    display: flex
+    flex-direction: column
+    justify-content: flex-start
+    width: 100%
+    max-width: $media-sm
+    max-height: calc(100vh - 2rem)
+    overflow: hidden
+    background-color: $modal-background-color
+    border: 1px solid $modal-border-color
+    margin: 1rem
+
+    +media-from-md
+        margin: 2rem
+
+    .modal-heading,
+    .modal-body,
+    .modal-footer
+        padding-left: $modal-padding-horizontal
+        padding-right: $modal-padding-horizontal
+
+    .modal-heading,
+    .modal-body
+        padding-top: $modal-padding-vertical
+
+    .modal-body,
+    .modal-footer
+        padding-bottom: $modal-padding-vertical
+
+    .modal-heading
+        display: flex
+        flex-direction: row
+        flex-wrap: nowrap
+        align-items: center
+        color: $heading-font-color
+        font-family: $heading-font-family
+
+        .modal-title
+            font-size: 1.25rem
+            line-height: 2
+            font-weight: 700
+            flex-grow: 1
+            flex-shrink: 0
+            flex-basis: 0
+            white-space: nowrap
+            overflow: hidden
+            text-overflow: ellipsis
+
+        .modal-heading-actions
+            flex-grow: 0
+            flex-shrink: 0
+
+    .modal-body
+        flex-grow: 1
+        flex-shrink: 1
+        overflow: auto
+
+    .close
+        position: absolute
+        top: 0
+        right: 0
+
+    // .modal-footer
+    //     border-top: 1px solid $modal-border-color

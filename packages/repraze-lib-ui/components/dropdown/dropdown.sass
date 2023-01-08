@@ -1,0 +1,83 @@
+.dropdown
+    position: relative
+    display: inline-flex
+
+    &.up
+        & > .dropdown-menu
+            top: initial
+            bottom: 100%
+
+    &.right
+        & > .dropdown-menu
+            left: initial
+            right: 0
+
+    &.expand-menu
+        & > .dropdown-menu
+            width: 100%
+
+    .dropdown-menu
+        display: none
+        position: absolute
+        top: 100%
+        left: 0
+        z-index: 20
+        min-width: 12rem
+        padding-top: 0.5rem
+
+    &.open
+        & > .dropdown-menu
+            display: block
+
+    .dropdown-trigger
+        flex: 1 1 auto
+        display: flex
+
+    .dropdown-content
+        display: block
+        background-color: $container-color
+        border: 1px solid $component-secondary-color
+        box-shadow: $shadow
+        padding: 0.25rem 0
+
+    .dropdown-item,
+    .dropdown-heading,
+    .dropdown-group
+        display: block
+        flex-grow: 0
+        flex-shrink: 0
+        line-height: 1.5
+        // font-size: .875rem
+        font-size: 1rem
+        padding: 0.5rem 0.75rem
+        position: relative
+        align-items: center
+
+    a.dropdown-item
+        &:hover
+            background-color: $component-secondary-color
+            color: $font-color
+        &.active
+            background-color: $primary-color
+            color: $white
+
+    .dropdown-divider
+        background-color: $component-secondary-color
+        border: none
+        display: block
+        height: 1px
+        margin: 0.5rem 0
+
+    .dropdown-heading
+        font-size: 1.25rem
+        // line-height: 2
+        font-weight: 700
+        white-space: nowrap
+        overflow: hidden
+        text-overflow: ellipsis
+
+    .dropdown-group
+        color: $font-color
+        font-size: 0.75rem
+        font-weight: 700
+        padding-bottom: 0.25rem

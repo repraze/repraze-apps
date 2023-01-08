@@ -1,0 +1,49 @@
+.title,
+.subtitle
+    display: block
+    font-family: $heading-font-family
+    line-height: 1.125em
+    word-break: break-word
+
+    &:not(:last-child)
+        margin-bottom: 1.5rem
+
+    & +.subtitle
+        margin-top: -1.25rem
+
+.title
+    color: $heading-font-color
+    font-weight: 600
+
+    a
+        color: $heading-font-color
+        &:hover
+            color: $primary-color
+
+.subtitle
+    color: $font-color
+    font-weight: 400
+
+h1.title,
+h1.subtitle
+    font-size: 3rem
+
+h2.title,
+h2.subtitle
+    font-size: 2.5rem
+
+h3.title,
+h3.subtitle
+    font-size: 2rem
+
+h4.title,
+h4.subtitle
+    font-size: 1.5rem
+
+h5.title,
+h5.subtitle
+    font-size: 1.25rem
+
+h6.title,
+h6.subtitle
+    font-size: 1rem

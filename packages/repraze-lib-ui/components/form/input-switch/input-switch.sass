@@ -1,0 +1,59 @@
+.input-switch-checkbox
+    z-index: -1
+    position: absolute
+    display: block
+    left: 0
+    right: 0
+    bottom: 0
+    top: 0
+    width: 1px
+    height: 100%
+    border: 0 none
+    outline: none
+    opacity: 0
+
+.input-switch-checkbox:focus + .input-switch,
+.input-switch-checkbox:active + .input-switch
+    border-color: $input-focus-border-color
+    box-shadow: 0 0 0 0.125rem darken(fade-out($primary-color, 0.66), 3%)
+
+// colors
+@each $name, $params in $colors
+    $color: nth($params, 1)
+    .input-switch-checkbox:focus + .input-switch.#{$name},
+    .input-switch-checkbox + .input-switch.focus.#{$name},
+    .input-switch-checkbox:active + .input-switch.#{$name},
+    .input-switch-checkbox + .input-switch.active.#{$name}
+        border-color: $color
+        box-shadow: 0 0 0 0.125rem darken(fade-out($color, 0.66), 3%)
+
+.input-switch-checkbox + .input-switch
+    @extend %input-base
+    position: relative
+    width: 4.5em
+    overflow: hidden
+    transition: background-color $speed ease-in-out
+
+    &:not(.disabled)
+        cursor: pointer
+
+    .input-switch-handle
+        position: absolute
+        top: $input-padding-vertical
+        left: $input-padding-horizontal
+        width: 1.5em
+        height: 1.5em
+        background-color: $input-border-color
+        transition: left $speed ease-in-out
+
+.input-switch-checkbox:checked + .input-switch
+    background-color: $primary-color
+
+    .input-switch-handle
+        left: 2.25em
+
+    // colors
+    @each $name, $params in $colors
+        $color: nth($params, 1)
+        &.#{$name}
+            background-color: $color

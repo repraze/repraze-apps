@@ -1,0 +1,115 @@
+$drawer-top-clearance: 3.125rem !default // should match navbar
+$drawer-background-color: $background-color !default
+$drawer-border-color: $component-secondary-color !default
+$drawer-spacing: 1rem
+$drawer-side-size: 350px
+
+.drawer
+    display: none
+    position: fixed
+    top: $drawer-top-clearance
+    bottom: 0
+    left: 0
+    right: 0
+    z-index: 10
+    width: 100%
+    overflow: hidden
+    background-color: $drawer-background-color
+    flex-direction: column
+    align-items: stretch
+
+    &.open
+        display: flex
+
+        // move content when open
+        +media-from-md
+            & + .app-main-content
+                &.side-drawer-left
+                    margin-left: $drawer-side-size
+
+                &.side-drawer-right
+                    margin-right: $drawer-side-size
+
+    // side drawer for larger screens
+    +media-from-md
+        &.left-side
+            width: $drawer-side-size
+            border-right: 1px solid $drawer-border-color
+            right: initial
+
+        &.right-side
+            width: $drawer-side-size
+            border-left: 1px solid $drawer-border-color
+            left: initial
+
+.drawer-top
+    flex-grow: 0
+    flex-shrink: 0
+    padding-top: $drawer-spacing
+    padding-left: $drawer-spacing
+    padding-right: $drawer-spacing
+
+.drawer-content
+    flex-grow: 1
+    flex-shrink: 0
+    flex-basis: 0
+    display: block
+    overflow-x: hidden
+    overflow-y: auto
+    padding: $drawer-spacing
+
+.drawer-bottom
+    flex-grow: 0
+    flex-shrink: 0
+    padding-bottom: $drawer-spacing
+    padding-left: $drawer-spacing
+    padding-right: $drawer-spacing
+
+// .drawer-item
+//     display: block
+//     padding: 0.5em 0
+
+.drawer-menu
+    display: flex
+    flex-direction: column
+    flex-wrap: nowrap
+    align-items: stretch
+
+.drawer-item
+    flex-grow: 0
+    flex-shrink: 0
+    display: block
+    line-height: 1.5
+    padding: 0.5rem 0.75rem
+    position: relative
+
+    .drawer-link
+        flex-grow: 1
+        flex-shrink: 0
+        display: flex
+        flex-direction: row
+        line-height: 1.5
+        position: relative
+        align-items: stretch
+
+    .drawer-link-label
+        flex-grow: 1
+        flex-shrink: 0
+        padding: 0.5rem 0.75rem
+
+    .drawer-link-toggle
+        flex-grow: 0
+        flex-shrink: 0
+
+    &.dropdown
+        align-items: stretch
+        padding: 0rem
+
+    .drawer-dropdown
+        display: none
+        font-size: .875rem
+        min-width: 100%
+        padding-left: $drawer-spacing
+
+        &.open
+            display: block
