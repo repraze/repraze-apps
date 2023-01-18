@@ -19,11 +19,11 @@ const nextConfig = {
         return [
             {
                 source: "/medias/:filename*",
-                destination: "/api/medias/:filename*",
+                destination: "http://localhost:3000/medias/:filename*",
             },
         ];
     },
-    transpilePackages: ["@repraze/lib-utils", "@repraze/lib-ui"],
+    transpilePackages: ["@repraze/lib-utils", "@repraze/lib-ui", "@repraze/website-lib"],
 };
 
 module.exports = nextConfig;

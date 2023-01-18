@@ -1,7 +1,7 @@
 import {NextApiRequest, NextApiResponse} from "next";
 
-import {AuthParams, decodeToken} from "../controllers/auth-controller";
-import {ApiCodes, ApiError, ApiHandler} from "../utils/api-utils";
+import {ApiCodes, ApiError, ApiHandler} from "../../../../repraze-website-api/src/api/api-utils";
+import {AuthParams, decodeToken} from "../../../../repraze-website-api/src/controllers/auth-controller";
 
 export type AuthData = {auth: AuthParams | null};
 

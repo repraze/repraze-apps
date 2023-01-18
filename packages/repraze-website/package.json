@@ -16,9 +16,6 @@
         "date-fns": "^2.29.3",
         "eslint": "8.31.0",
         "eslint-config-next": "13.1.1",
-        "jsonwebtoken": "^9.0.0",
-        "mime": "^3.0.0",
-        "mongoose": "^6.8.2",
         "next": "13.1.1",
         "react": "18.2.0",
         "react-dom": "18.2.0",
@@ -26,8 +23,9 @@
         "zod": "^3.20.2"
     },
     "devDependencies": {
-        "@types/jsonwebtoken": "^9.0.0",
-        "@types/mime": "^3.0.1",
+        "@repraze/lib-ui": "^1.0.0",
+        "@repraze/lib-utils": "^1.0.0",
+        "@repraze/website-lib": "^1.0.0",
         "sass": "^1.57.1"
     }
 }

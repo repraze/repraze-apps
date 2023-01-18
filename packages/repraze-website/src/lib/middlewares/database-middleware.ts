@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 import {NextApiRequest, NextApiResponse} from "next";
 
-import {ApiHandler} from "../utils/api-utils";
+import {ApiHandler} from "../../../../repraze-website-api/src/api/api-utils";
 
 const MONGODB_URI = process.env.MONGODB_URI;
 

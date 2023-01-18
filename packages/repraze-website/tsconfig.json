@@ -15,6 +15,14 @@
         "jsx": "preserve",
         "incremental": true
     },
-    "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "../repraze-lib-utils/timing.ts"],
+    "include": [
+        "next-env.d.ts",
+        "**/*.ts",
+        "**/*.tsx",
+        "../repraze-lib-utils/timing.ts",
+        "../repraze-website-lib/types/api.ts",
+        "../repraze-website-api/src/api/api-utils.ts",
+        "../repraze-website-api/src/utils/logger.ts"
+    ],
     "exclude": ["node_modules"]
 }

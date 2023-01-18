@@ -10,7 +10,7 @@ const serverConfig = {
         __dirname: false,
     },
     entry: {
-        app: [path.resolve(__dirname, "src", "repraze-server", "index.ts")],
+        app: [path.resolve(__dirname, "src", "index.ts")],
     },
     output: {
         filename: "server.bundle.js",
@@ -35,8 +35,13 @@ const serverConfig = {
         extensions: [".ts", ".js", ".json"],
         modules: ["node_modules"],
     },
-    externals: [nodeExternals({})],
+    externals: [
+        nodeExternals({
+            allowlist: [/^@repraze\//],
+            additionalModuleDirs: ["../../node_modules"],
+        }),
+    ],
     devtool: "source-map",
 };
 
-module.exports = [publicClientConfig, adminClientConfig, serverConfig];
+module.exports = [serverConfig];

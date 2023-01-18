@@ -1,12 +1,12 @@
-import compression from "compression";
-import express from "express";
-import helmet from "helmet";
-import mongoose from "mongoose";
 // map bundle source links to original source
 import "source-map-support/register";
 
-const app = express();
+import {connectDatabase, setupServer, startServer} from "./server";
 
-app.get("/", (req, res) => {
-    res.json({message: "hello world!"});
-});
+async function start() {
+    await connectDatabase();
+    await setupServer();
+    await startServer();
+}
+
+start();
