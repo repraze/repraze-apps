@@ -1,5 +1,5 @@
-$loader-background-color: $background-color !default
-$loader-image-color: $container-color !default
+$loader-background-color: var(--color-bg) !default
+$loader-image-color: red !default
 
 .loader
     display: inline-flex
@@ -27,6 +27,6 @@ $loader-image-color: $container-color !default
 
 @keyframes loader-color
     0%
-        background-color: mix($loader-background-color, $loader-image-color, 10%)
+        background-color: $loader-image-color
     100%
         background-color: $loader-background-color

@@ -1,10 +1,10 @@
 $input-color: $font-color !default
-$input-placeholder-color: $font-lighter-color !default
+$input-placeholder-color: var(--color-ui-harder) !default
 $input-disabled-color: $font-lighter-color !default
-$input-background-color: $component-color !default
-$input-border-color: $component-secondary-color !default
-$input-hover-border-color: $font-lighter-color !default
-$input-focus-border-color: $primary-color !default
+$input-background-color: var(--color-ui) !default
+$input-border-color: var(--color-ui-hard) !default
+$input-hover-border-color: var(--color-ui-harder) !default
+$input-focus-border-color: var(--color-primary) !default
 $input-padding-horizontal: calc(0.75em - 1px) !default
 $input-padding-vertical: calc(0.5em - 1px) !default
 
@@ -36,8 +36,22 @@ $input-padding-vertical: calc(0.5em - 1px) !default
     padding-top: $input-padding-vertical
     padding-bottom: $input-padding-vertical
 
+%input-base-sizing
+    // sizings
+    font-size: 1rem
+
+    &.small
+        font-size: 0.75rem
+    &.normal
+        font-size: 1rem
+    &.medium
+        font-size: 1.25rem
+    &.large
+        font-size: 1.5rem
+
 %input-base
     @extend %input-base-readonly
+    @extend %input-base-sizing
 
     &:hover:not(:disabled),
     &.hover
@@ -48,7 +62,7 @@ $input-padding-vertical: calc(0.5em - 1px) !default
     &:focus:not(:disabled),
     &.focus
         border-color: $input-focus-border-color
-        box-shadow: 0 0 0 0.125rem darken(fade-out($primary-color, 0.66), 3%)
+        box-shadow: 0 0 0 0.125rem var(--color-primary-hard)
 
     &::placeholder
         color: $input-placeholder-color
@@ -57,28 +71,25 @@ $input-padding-vertical: calc(0.5em - 1px) !default
         color: $input-disabled-color
         background-color: transparent
 
-    // sizings
-    &.small
-        font-size: 0.75rem
-    &.normal
-        font-size: 1rem
-    &.medium
-        font-size: 1.25rem
-    &.large
-        font-size: 1.5rem
-
     // colors
     @each $name, $params in $colors
         $color: nth($params, 1)
+        $color-soft: nth($params, 3)
+        $color-hard: nth($params, 4)
+
         &.#{$name}
             border-color: $color
 
-            &:active,
+            &:hover:not(:disabled),
+            &.hover
+                border-color: $color-soft
+
+            &:active:not(:disabled),
             &.active,
-            &:focus,
+            &:focus:not(:disabled),
             &.focus
                 border-color: $color
-                box-shadow: 0 0 0 0.125rem darken(fade-out($color, 0.66), 3%)
+                box-shadow: 0 0 0 0.125rem $color-hard
 
 @import "./field/field.sass"
 @import "./help/help.sass"

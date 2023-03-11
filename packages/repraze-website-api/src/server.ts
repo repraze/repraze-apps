@@ -1,6 +1,7 @@
 import {UserAndPassword} from "@repraze/website-lib/types/user";
 import {Email, Name, Password, Username} from "@repraze/website-lib/types/user-basic";
 import compression from "compression";
+import cors from "cors";
 import {default as express} from "express";
 import helmet from "helmet";
 import mongoose from "mongoose";
@@ -16,6 +17,7 @@ const logger = new Logger({level: LoggerLevel.INFO});
 const app = express();
 
 // middlewares
+app.use(cors());
 app.use(
     helmet({
         contentSecurityPolicy: false,
@@ -29,7 +31,7 @@ app.use("/api/v1", apiRouter);
 app.use("/medias", mediasServiceRouter);
 
 export async function connectDatabase() {
-    const mongoURI = "mongodb://172.27.64.1/repraze"; // cat /etc/resolv.conf
+    const mongoURI = "mongodb://172.20.224.1/repraze"; // cat /etc/resolv.conf
     mongoose.set("strictQuery", true);
     mongoose.connection.on("error", (message) => logger.error(message));
     const connection = await mongoose.connect(mongoURI);

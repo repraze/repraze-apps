@@ -13,7 +13,7 @@ import React, {
 
 import {Colors, Sizes} from "../../../constants";
 import {Icon} from "../../icon/icon";
-import {LinkTag, Tag, Tags} from "../../tag/tag";
+import {Tag, Tags} from "../../tag/tag";
 import {Control, Field, Fields} from "../field/field";
 
 export interface InputTagProps extends Omit<InputHTMLAttributes<HTMLInputElement>, "size"> {
@@ -128,9 +128,9 @@ export const InputTag = forwardRef<HTMLInputElement, InputTagProps>(function Inp
                                 <Tag size={size} color={tagColor}>
                                     {tag}
                                 </Tag>
-                                <LinkTag size={size} action onClick={handleRemove.bind(undefined, index)}>
+                                <Tag as={"a"} size={size} action onClick={handleRemove.bind(undefined, index)}>
                                     <Icon icon={faTimes} fixedWidth />
-                                </LinkTag>
+                                </Tag>
                             </Tags>
                         </Control>
                     </Field>

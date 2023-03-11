@@ -1,7 +1,7 @@
+import {EventEmitter} from "@repraze/lib-utils/event-emitter";
 import classnames from "classnames";
 import React, {Fragment, ReactNode, createContext, useContext, useEffect, useMemo, useState} from "react";
 
-import {EventEmitter} from "../../../repraze-utils/event-emitter";
 import {Colors} from "../../constants";
 
 export interface NoticeEmitterInterface {

@@ -1,5 +1,5 @@
 $pagination-link-color: $font-color !default
-$pagination-link-background-color: $component-secondary-color !default
+$pagination-link-background-color: red !default
 $pagination-link-padding-horizontal: calc(0.5em - 1px)
 $pagination-link-padding-vertical: calc(0.5em - 1px)
 $pagination-link-gap: 0.5em
@@ -72,7 +72,7 @@ $pagination-link-gap: 0.5em
             background-color: darken($button-background-color, 3%)
         &:focus,
         &.focus
-            box-shadow: 0 0 0 0.125rem darken(fade-out($primary-color, 0.66), 3%)
+            box-shadow: 0 0 0 0.125rem var(--color-primary-hard)
         &:active,
         &.active
             background-color: darken($button-background-color, 7%)
@@ -83,5 +83,5 @@ $pagination-link-gap: 0.5em
             pointer-events: none
 
         &.current
-            background-color: $primary-color
-            color: $white
+            background-color: var(--color-primary)
+            color: var(--color-primary-overlay)

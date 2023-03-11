@@ -3,9 +3,9 @@ import {ComponentPropsWithRef, ComponentPropsWithoutRef, ElementType} from "reac
 export type AsPropsWithoutRef<MainProps, C extends ElementType> = {
     as?: C;
 } & MainProps &
-    Omit<ComponentPropsWithoutRef<C>, keyof MainProps>;
+    Omit<ComponentPropsWithoutRef<C>, keyof MainProps | "as">;
 
 export type AsPropsWithRef<MainProps, C extends ElementType> = {
     as?: C;
 } & MainProps &
-    Omit<ComponentPropsWithRef<C>, keyof MainProps>;
+    Omit<ComponentPropsWithRef<C>, keyof MainProps | "as">;

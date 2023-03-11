@@ -15,17 +15,19 @@
 .input-switch-checkbox:focus + .input-switch,
 .input-switch-checkbox:active + .input-switch
     border-color: $input-focus-border-color
-    box-shadow: 0 0 0 0.125rem darken(fade-out($primary-color, 0.66), 3%)
+    box-shadow: 0 0 0 0.125rem var(--color-primary-hard)
 
 // colors
 @each $name, $params in $colors
     $color: nth($params, 1)
+    $color-hard: nth($params, 4)
+
     .input-switch-checkbox:focus + .input-switch.#{$name},
     .input-switch-checkbox + .input-switch.focus.#{$name},
     .input-switch-checkbox:active + .input-switch.#{$name},
     .input-switch-checkbox + .input-switch.active.#{$name}
         border-color: $color
-        box-shadow: 0 0 0 0.125rem darken(fade-out($color, 0.66), 3%)
+        box-shadow: 0 0 0 0.125rem $color-hard
 
 .input-switch-checkbox + .input-switch
     @extend %input-base
@@ -47,7 +49,7 @@
         transition: left $speed ease-in-out
 
 .input-switch-checkbox:checked + .input-switch
-    background-color: $primary-color
+    background-color: var(--color-primary)
 
     .input-switch-handle
         left: 2.25em
@@ -55,5 +57,6 @@
     // colors
     @each $name, $params in $colors
         $color: nth($params, 1)
+
         &.#{$name}
             background-color: $color

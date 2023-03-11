@@ -1,11 +1,11 @@
 import {faAngleDown, faAngleUp} from "@fortawesome/free-solid-svg-icons";
 import classnames from "classnames";
 import React, {HTMLAttributes, ReactNode, useCallback, useState} from "react";
-import {NavLink} from "react-router-dom";
 
 import {Button} from "../../components/button/button";
 import {Icon} from "../../components/icon/icon";
 import {MenuItems} from "../../components/menu/menu";
+import {NavLink} from "../../components/navlink/navlink";
 import {Colors} from "../../constants";
 
 export interface DrawerProps extends HTMLAttributes<HTMLDivElement> {
@@ -86,7 +86,7 @@ export function DrawerMenu({className, dropdown, items, onItemClick, ...props}: 
                                     <NavLink
                                         className="drawer-link"
                                         activeClassName="active"
-                                        to={item.link}
+                                        href={item.link}
                                         onClick={handleClick.bind(undefined, item.id)}
                                     >
                                         <div className="drawer-link-label">{item.label}</div>
@@ -152,7 +152,7 @@ export function DrawerMenu({className, dropdown, items, onItemClick, ...props}: 
                                 <NavLink
                                     className={classnames("drawer-item", itemClassName)}
                                     activeClassName="active"
-                                    to={item.link}
+                                    href={item.link}
                                     key={item.id}
                                     onClick={handleClick.bind(undefined, item.id)}
                                     {...itemProps}

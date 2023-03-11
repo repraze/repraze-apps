@@ -1,20 +1,14 @@
+import {Figure, FigureProps} from "@repraze/lib-ui/components/figure/figure";
+import {Profile, ProfilePicture, ProfilePictureProps, ProfileProps} from "@repraze/lib-ui/components/profile/profile";
+import {Sizes} from "@repraze/lib-ui/constants";
+import {AsPropsWithoutRef} from "@repraze/lib-ui/props";
+import {User} from "@repraze/website-lib/types/user";
+import Link from "next/link";
 import React, {ElementType} from "react";
-import {Link} from "react-router-dom";
-
-import {User} from "../../repraze-types/user";
-import {Figure, FigureProps} from "../../repraze-ui-lib/components/figure/figure";
-import {
-    Profile,
-    ProfilePicture,
-    ProfilePictureProps,
-    ProfileProps,
-} from "../../repraze-ui-lib/components/profile/profile";
-import {Sizes} from "../../repraze-ui-lib/constants";
-import {AsPropsWithoutRef} from "../../repraze-ui-lib/props";
 
 export interface UserProfileProps extends Omit<ProfileProps, "src" | "name" | "more"> {
     user: User;
-    to: string;
+    href: string;
 }
 
 export function UserProfile({user, size, ...props}: UserProfileProps) {
@@ -32,7 +26,7 @@ export function UserProfile({user, size, ...props}: UserProfileProps) {
             src={
                 user.profile_media
                     ? `/medias/${user.profile_media.id}${user.profile_media?.extension}`
-                    : "/public/default-profile.jpg"
+                    : "/static/default-profile.jpg"
             }
             {...props}
         />
@@ -49,7 +43,7 @@ export function UserProfilePicture({user, ...props}: UserProfilePictureProps) {
             src={
                 user.profile_media
                     ? `/medias/${user.profile_media.id}${user.profile_media?.extension}`
-                    : "/public/default-profile.jpg"
+                    : "/static/default-profile.jpg"
             }
             {...props}
         />

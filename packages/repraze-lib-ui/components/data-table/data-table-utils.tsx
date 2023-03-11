@@ -2,7 +2,7 @@ import {DataTableViewColumn} from "./views/data-table-view";
 
 export const getScrollbarWidth = (() => {
     let scrollbarWidth = 0;
-    let deviceRatio = window.devicePixelRatio;
+
     function refresh() {
         const dummy = document.createElement("div");
         dummy.style.visibility = "hidden";
@@ -11,13 +11,22 @@ export const getScrollbarWidth = (() => {
         scrollbarWidth = dummy.getBoundingClientRect().height;
         dummy.parentNode?.removeChild(dummy);
     }
-    return function () {
-        if (scrollbarWidth === 0 || deviceRatio !== window.devicePixelRatio) {
-            refresh();
-            deviceRatio = window.devicePixelRatio;
-        }
-        return scrollbarWidth;
-    };
+
+    if (typeof window === "undefined") {
+        return function () {
+            return 0;
+        };
+    } else {
+        let deviceRatio = window.devicePixelRatio;
+
+        return function () {
+            if (scrollbarWidth === 0 || deviceRatio !== window.devicePixelRatio) {
+                refresh();
+                deviceRatio = window.devicePixelRatio;
+            }
+            return scrollbarWidth;
+        };
+    }
 })();
 
 const mediaMd = 768; // breakpoint

@@ -1,7 +1,7 @@
-$data-table-background-color: $container-color !default
-$data-table-striped-color: mix($container-color, $component-secondary-color, 50%) !default
-$data-table-hover-color: $component-secondary-color !default
-$data-table-border-color: $component-secondary-color !default
+$data-table-background-color: red !default
+$data-table-striped-color: red !default
+$data-table-hover-color: red !default
+$data-table-border-color: red !default
 $data-table-padding-horizontal: 0.75em !default
 $data-table-padding-vertical: 0.5em !default
 $data-table-padding-horizontal-narrow: 0.5em !default
@@ -99,8 +99,8 @@ $data-table-padding-uniform-narrow: 0.0625em !default // 1px spacing to achieve 
         flex-direction: row
 
         &.active
-            background-color: $primary-color
-            color: $white
+            background-color: var(--color-primary)
+            color: var(--color-primary-overlay)
 
     &.striped
         .data-table-body

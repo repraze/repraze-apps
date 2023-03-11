@@ -1,10 +1,10 @@
 import {faAngleDown} from "@fortawesome/free-solid-svg-icons";
 import classnames from "classnames";
 import React, {HTMLAttributes, ReactNode} from "react";
-import {NavLink} from "react-router-dom";
 
 import {Icon} from "../../components/icon/icon";
 import {MenuItems} from "../../components/menu/menu";
+import {NavLink} from "../../components/navlink/navlink";
 
 export interface NavbarProps extends HTMLAttributes<HTMLElement> {
     className?: string;
@@ -56,9 +56,17 @@ export function NavMenu({className, dropdown, items, ...props}: NavMenuProps) {
                                         <Icon className="navbar-link-icon" icon={faAngleDown} fixedWidth />
                                     </a>
                                 ) : (
-                                    <NavLink className="navbar-link" activeClassName="active" to={item.link}>
-                                        {item.label}
-                                        <Icon className="navbar-link-icon" icon={faAngleDown} fixedWidth />
+                                    <NavLink
+                                        className="navbar-link"
+                                        activeClassName="active"
+                                        href={item.link}
+                                        passHref
+                                        legacyBehavior
+                                    >
+                                        <>
+                                            {item.label}
+                                            <Icon className="navbar-link-icon" icon={faAngleDown} fixedWidth />
+                                        </>
                                     </NavLink>
                                 )}
                                 <NavMenu items={item.items} dropdown />
@@ -93,7 +101,7 @@ export function NavMenu({className, dropdown, items, ...props}: NavMenuProps) {
                                 <NavLink
                                     className={classnames("navbar-item", itemClassName)}
                                     activeClassName="active"
-                                    to={item.link}
+                                    href={item.link}
                                     key={item.id}
                                     {...itemProps}
                                 >

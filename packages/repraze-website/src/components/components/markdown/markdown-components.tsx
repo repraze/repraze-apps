@@ -1,14 +1,12 @@
 import {faCheck, faCopy, faPlay, faTimes} from "@fortawesome/free-solid-svg-icons";
+import {Button} from "@repraze/lib-ui/components/button/button";
+import {Icon} from "@repraze/lib-ui/components/icon/icon";
+import {Table, TableContainer} from "@repraze/lib-ui/components/table/table";
+import {TitleAnchor} from "@repraze/lib-ui/components/title/title";
+import {Colors} from "@repraze/lib-ui/constants";
+import {Grid, GridCell} from "@repraze/lib-ui/layout/grid/grid";
+import {copyToClipboard} from "@repraze/lib-ui/utils/clipboad";
 import React, {HTMLAttributes, useCallback} from "react";
-
-import {delay} from "../../../repraze-utils/timing";
-import {Colors} from "../../constants";
-import {Grid, GridCell} from "../../layout/grid/grid";
-import {copyToClipboard} from "../../utils/clipboad";
-import {Button, StateButton, StateButtonHooks} from "../button/button";
-import {Icon} from "../icon/icon";
-import {Table, TableContainer} from "../table/table";
-import {TitleAnchor} from "../title/title";
 
 export interface ContentCodeViewerProps extends HTMLAttributes<HTMLPreElement> {
     "data-raw-code": string;
@@ -24,15 +22,15 @@ export function ContentCodeViewer({
     ...props
 }: ContentCodeViewerProps) {
     const handleCopyToClipboard = useCallback(
-        async (event: React.MouseEvent<HTMLButtonElement, MouseEvent>, stateButton: StateButtonHooks) => {
+        async (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
             const copied = await copyToClipboard(rawCode);
-            if (copied) {
-                stateButton.setState({icon: faCheck, color: Colors.Success});
-            } else {
-                stateButton.setState({icon: faTimes, color: Colors.Danger});
-            }
-            await delay(1000);
-            stateButton.reset();
+            // if (copied) {
+            //     stateButton.setState({icon: faCheck, color: Colors.Success});
+            // } else {
+            //     stateButton.setState({icon: faTimes, color: Colors.Danger});
+            // }
+            // await delay(1000);
+            // stateButton.reset();
         },
         [rawCode]
     );
@@ -42,11 +40,9 @@ export function ContentCodeViewer({
                 <div className="code-language">{language}</div>
                 <div className="code-title">{title}</div>
                 <div className="code-actions">
-                    <StateButton
-                        title="Copy"
-                        defaultState={{color: Colors.Transparent, icon: faCopy}}
-                        onClick={handleCopyToClipboard}
-                    />
+                    <Button title="Copy" color={Colors.Transparent} onClick={handleCopyToClipboard}>
+                        <Icon icon={faCopy} fixedWidth />
+                    </Button>
                 </div>
             </div>
             <pre {...props}>{children}</pre>

@@ -3,11 +3,11 @@
 $code-prefix: "sc-" !default
 $code-color: $font-color !default
 // $code-font: $code-font-family !default
-$code-background: $container-color !default
-$code-border-color: $component-secondary-color !default
+$code-background: red !default
+$code-border-color: red !default
 $code-line-color: $font-lighter-color !default
-$code-highlight-background: $component-secondary-color !default
-$code-highlight-border: $primary-color !default
+$code-highlight-background: red !default
+$code-highlight-border: var(--color-primary) !default
 $code-highlight-line-color: $font-color !default
 $code-spacing: 1rem !default
 $code-padding-horizontal: 0.75em !default
@@ -114,7 +114,7 @@ pre.#{$code-prefix}ch
     &doctag,
     &formula,
     &keyword
-        color: $purple
+        color: var(--color-purple)
 
     &deletion,
     &name,
@@ -122,13 +122,13 @@ pre.#{$code-prefix}ch
     &selector-tag,
     &regexp,
     &subst
-        color: $orange
+        color: var(--color-orange)
 
     &addition,
     &attribute,
     &meta &string,
     &string
-        color: $green
+        color: var(--color-green)
 
     &attr,
     &selector-attr,
@@ -137,7 +137,7 @@ pre.#{$code-prefix}ch
     &template-variable,
     &type,
     &variable
-        color: $red
+        color: var(--color-red)
 
     &bullet,
     &link,
@@ -145,14 +145,14 @@ pre.#{$code-prefix}ch
     &selector-id,
     &symbol,
     &title
-        color: $blue
+        color: var(--color-blue)
 
     &literal,
     &number,
     &built_in,
     &class.#{$code-prefix}title,
     &title.class_
-        color: $purple
+        color: var(--color-purple)
 
     &emphasis
         font-style: italic

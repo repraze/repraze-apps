@@ -79,14 +79,14 @@ $content-pad: 1em
                 visibility: visible
 
     a
-        color: $primary-color
+        color: var(--color-primary)
         cursor: pointer
         text-decoration: none
         strong
             color: currentColor
         &:hover,
         &:active
-            color: darken($primary-color, 20%)
+            color: var(--color-primary-hard)
 
     ul
         list-style: disc outside
@@ -101,4 +101,4 @@ $content-pad: 1em
     blockquote
         // @extend .box
         padding-left: 0.75em
-        border-left: 4px solid $primary-color
+        border-left: 4px solid var(--color-primary)

@@ -1,5 +1,6 @@
 import {IconProp} from "@fortawesome/fontawesome-svg-core";
 import {faTimes} from "@fortawesome/free-solid-svg-icons";
+import {EventEmitter} from "@repraze/lib-utils/event-emitter";
 import React, {
     MouseEventHandler,
     ReactNode,
@@ -12,7 +13,6 @@ import React, {
     useState,
 } from "react";
 
-import {EventEmitter} from "../../../repraze-utils/event-emitter";
 import {Colors} from "../../constants";
 import {Button} from "../button/button";
 import {Control, Field, Fields} from "../form/field/field";

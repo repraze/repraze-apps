@@ -7,9 +7,6 @@ $body-min-width: 300px !default
 html
     margin: 0
     padding: 0
-    font-family: $font-family
-    font-weight: 400
-    font-size: $body-font-size
     min-width: $body-min-width
     text-rendering: optimizeLegibility
     text-size-adjust: 100%
@@ -17,10 +14,9 @@ html
 body
     margin: 0
     padding: 0
-    color: $font-color
     font-size: 1em
     position: relative
-    background-color: $background-color
+    background-color: var(--color-bg)
     line-height: $body-line-height
     display: flex
     flex-direction: column
@@ -44,13 +40,13 @@ body
     box-sizing: border-box
     outline: none
     -webkit-tap-highlight-color: transparent
-    color-scheme: $color-scheme
+    color-scheme: var(--color-scheme)
 
     & ::selection,
     &::selection
         text-shadow: none
-        background-color: $primary-color
-        color: $white
+        background-color: var(--color-primary)
+        color: var(--color-primary-overlay)
 
 a
     color: inherit // base links are plain, check content links
@@ -58,12 +54,18 @@ a
     text-decoration: none
     &:hover,
     &:active
-        color: $primary-color
+        color: var(--color-primary)
 
 small
     font-size: smaller
 
-// container
+// app container
+
+.app
+    color: $font-color
+    font-family: $font-family
+    font-weight: 400
+    font-size: $body-font-size
 
 .app-full-size
     display: flex

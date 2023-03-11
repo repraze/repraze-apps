@@ -1,13 +1,15 @@
 import classnames from "classnames";
 import React, {ReactNode, useCallback} from "react";
 
+import {AsPropsWithoutRef} from "../../props";
 import {Button, ButtonProps} from "../button/button";
 import {Dropdown, useDropdownController} from "../dropdown/dropdown";
 
-export interface ButtonDropdownProps extends ButtonProps {
+export interface ButtonDropdownProps extends AsPropsWithoutRef<ButtonProps, "button"> {
     right?: boolean;
     up?: boolean;
     menu?: ReactNode;
+    buttonProps?: ButtonProps;
 }
 
 export function ButtonDropdown({className, right, up, menu, children, ...props}: ButtonDropdownProps) {

@@ -1,5 +1,5 @@
 $tabs-color: $font-color !default
-$tabs-background-color: $component-secondary-color !default
+$tabs-background-color: red !default
 $tabs-padding-horizontal: 1em !default
 $tabs-padding-vertical: calc(0.5em - 1px) !default
 
@@ -19,7 +19,7 @@ $tabs-padding-vertical: calc(0.5em - 1px) !default
         align-items: center
         justify-content: flex-start
         flex-direction: row
-        border-bottom: 1px solid $component-secondary-color
+        border-bottom: 1px solid red
 
 .tab
     display: block
@@ -44,10 +44,10 @@ $tabs-padding-vertical: calc(0.5em - 1px) !default
     // states
     &.active
         a
-            background-color: $background-color
-            border-left-color: $component-secondary-color
-            border-right-color: $component-secondary-color
-            border-top-color: $component-secondary-color
+            background-color: var(--color-bg)
+            border-left-color: red
+            border-right-color: red
+            border-top-color: red
 
 .tabs-panel
     .tabs
@@ -57,5 +57,5 @@ $tabs-padding-vertical: calc(0.5em - 1px) !default
     .tabs-panel-content
         position: relative
         z-index: 1
-        // background-color: $container-color
+        // background-color: red
         // margin-top: -1px

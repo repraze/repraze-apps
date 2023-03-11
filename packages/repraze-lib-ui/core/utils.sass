@@ -49,5 +49,5 @@
     background-position: 0 0, 0 #{math.div($size, 2)}, #{math.div($size, 2)} #{math.div(-$size, 2)}, #{math.div(-$size, 2)} 0px
 
 .checkered
-    background-color: $container-color
-    @include checkerboard(20px, $background-color)
+    background-color: var(--color-bg-hard)
+    @include checkerboard(20px, var(--color-bg))

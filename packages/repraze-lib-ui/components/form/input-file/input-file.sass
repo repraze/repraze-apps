@@ -42,7 +42,7 @@
     &.active,
     &:focus:has(input:not(:disabled)),
     &.focus
-        box-shadow: 0 0 0 0.125rem darken(fade-out($primary-color, 0.66), 3%)
+        box-shadow: 0 0 0 0.125rem var(--color-primary-hard)
         .input-file-name
             border-color: $input-focus-border-color
 
@@ -63,6 +63,7 @@
     // colors
     @each $name, $params in $colors
         $color: nth($params, 1)
+
         &.#{$name}
             .input-file-name
                 border-color: $color
@@ -71,7 +72,7 @@
             &.active,
             &:focus,
             &.focus
-                box-shadow: 0 0 0 0.125rem darken(fade-out($color, 0.66), 3%)
+                box-shadow: 0 0 0 0.125rem var(--color-primary-hard)
                 .input-file-name
                     border-color: $color
 

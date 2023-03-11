@@ -1,1 +1,76 @@
+// UI lib
+$font-family: var(--roboto-font, sans-serif)
+$heading-font-family: var(--fira-code-font, monospace)
+$code-font-family: var(--fira-code-font, monospace)
+
 @import "@repraze/lib-ui/ui.sass"
+@import "../components/components/markdown/markdown.sass"
+
+// App
+
+// font-feature-settings: "ss01", "ss02", "ss03", "ss04", "ss05", "ss06", "zero", "onum"
+code
+    font-variant-ligatures: none
+    font-feature-settings: "zero"
+
+.post-layout
+    display: flex
+    flex-direction: column
+    gap: 1.5rem
+
+    +media-from-xl
+        display: grid
+        gap: 3rem
+        grid-template-columns: 1fr 350px
+
+.post
+    display: flex
+    flex-direction: column
+
+    // .post-header:not(:last-child)
+    //     margin-bottom: 1.5rem
+
+    .post-title.title
+        margin-bottom: 0
+
+    .post-info
+        margin-top: 0.75rem
+
+    .post-tags
+        margin-top: 0.75rem
+
+    // .post-content
+    //     flex-basis: 0
+    //     flex-grow: 1
+    //     flex-shrink: 1
+
+    // .post-more
+    //     margin-top: 0.75rem
+
+.footer
+    .footer-mark
+        text-align: left
+
+    .footer-quote
+        text-align: right
+
+@keyframes blink
+    0%
+        opacity: 100%
+    50%
+        opacity: 0%
+    51%
+        opacity: 100%
+    100%
+        opacity: 100%
+
+.blink
+    animation-name: blink
+    animation-duration: 1s
+    animation-direction: normal
+    animation-timing-function: ease-out
+    animation-iteration-count: infinite
+
+.user-pill
+    .user-info
+        font-weight: bold

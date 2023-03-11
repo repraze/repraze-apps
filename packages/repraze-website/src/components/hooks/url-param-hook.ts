@@ -1,5 +1,6 @@
+import {extractSearchString} from "@repraze/lib-ui/utils/url-utils";
+import {useRouter} from "next/router";
 import {useCallback} from "react";
-import {useHistory, useLocation} from "react-router-dom";
 
 export type URLParamParser<T> = {
     stringToParam: (rawParam: string | undefined, defaultParam: T | undefined) => T | undefined;
@@ -30,7 +31,7 @@ export function createURLParamNumberParser(): URLParamParser<number> {
         stringToParam: (rawParam, defaultParam) => {
             if (rawParam !== undefined) {
                 const num = parseFloat(rawParam);
-                if (num !== NaN) {
+                if (!isNaN(num)) {
                     return num;
                 }
             }
@@ -95,8 +96,7 @@ export function useURLParam<T>(
     parser: URLParamParser<T>,
     defaultParam: T | undefined = undefined
 ): [T | undefined, (param: T | undefined) => void] {
-    const location = useLocation();
-    const history = useHistory();
+    const router = useRouter();
 
     const setParam = useCallback(
         (param: T | undefined) => {
@@ -106,12 +106,12 @@ export function useURLParam<T>(
             } else {
                 params.set(name, parser.paramToString(param));
             }
-            history.replace({search: params.toString()});
+            router.replace({search: params.toString()});
         },
-        [history, name]
+        [router, name, parser]
     );
 
-    const params = new URLSearchParams(location.search);
+    const params = new URLSearchParams(extractSearchString(router.asPath));
     const rawParam = params.get(name);
     const param = parser.stringToParam(rawParam === null ? undefined : rawParam, defaultParam);
 

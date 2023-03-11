@@ -1,16 +1,75 @@
-import React, {useRef} from "react";
+import Head from "next/head";
+import React, {createContext, useCallback, useEffect, useState} from "react";
 
-import {Theme, ThemeInterface, ThemeModes} from "./theme";
-import {ThemeContext} from "./theme-context";
-
-const THEME_MODE_TO_STYLE: {[key in ThemeModes]: () => any} = {
-    [ThemeModes.Light]: async () => (await import("../../style/theme-light.sass")).default,
-    [ThemeModes.Dark]: async () => (await import("../../style/theme-dark.sass")).default,
+export type ThemeScheme = {
+    colorScheme: string;
+    primaryColor: string;
+    backgroundColor: string;
+    containerColor: string;
+    componentColor: string;
+    componentSecondaryColor: string;
+    fontColor: string;
+    fontLightColor: string;
+    fontLighterColor: string;
+    headingFontColor: string;
+    transparentColor: string;
 };
+
+export enum ThemeModes {
+    Dark = "dark",
+    Light = "light",
+}
+
+export const ThemeModeSchemes: {[key in ThemeModes]: ThemeScheme} = {
+    [ThemeModes.Dark]: {
+        colorScheme: "dark",
+        primaryColor: "rgb(68, 65, 243)",
+        backgroundColor: "rgb(255, 255, 255)",
+        containerColor: "rgb(248, 249, 252)",
+        componentColor: "rgb(248, 249, 252)",
+        componentSecondaryColor: "#dfe4f1",
+        fontColor: "rgb(36, 44, 62)",
+        fontLightColor: "#53658f",
+        fontLighterColor: "#acb7cf",
+        headingFontColor: "rgb(8, 8, 12)",
+        transparentColor: "rgba(255, 255, 255, 0)",
+    },
+    [ThemeModes.Light]: {
+        colorScheme: "light",
+        primaryColor: "rgb(68, 65, 243)",
+        backgroundColor: "rgb(255, 255, 255)",
+        containerColor: "rgb(248, 249, 252)",
+        componentColor: "rgb(248, 249, 252)",
+        componentSecondaryColor: "#dfe4f1",
+        fontColor: "rgb(36, 44, 62)",
+        fontLightColor: "#53658f",
+        fontLighterColor: "#acb7cf",
+        headingFontColor: "rgb(8, 8, 12)",
+        transparentColor: "rgba(255, 255, 255, 0)",
+    },
+};
+
+export function makeSchemeCss(scheme: ThemeScheme) {
+    return `
+    :root {
+        --color-scheme: ${scheme.colorScheme};
+        --primaryColor: ${scheme.primaryColor};
+        --white: #ffffff;
+      }
+    `;
+}
+
+export const ThemeContext = createContext({
+    mode: ThemeModes.Light,
+    scheme: ThemeModeSchemes[ThemeModes.Light],
+    setMode: (mode: ThemeModes): void => {
+        throw new Error("Unimplemented setMode method");
+    },
+});
 
 const THEME_STORAGE_KEY = "theme";
 
-function getUserMode(): ThemeModes {
+function getUserModeFromStorage(): ThemeModes {
     const isDefaultDarkMode = true; // controls the default theme if OS not set
     const isOSInDarkMode = window.matchMedia
         ? window.matchMedia("(prefers-color-scheme: dark)").matches
@@ -28,42 +87,49 @@ function getUserMode(): ThemeModes {
         : ThemeModes.Light;
 }
 
+function setUserModeFromStorage(mode: ThemeModes) {
+    if (window.localStorage) {
+        window.localStorage.setItem(THEME_STORAGE_KEY, mode);
+    }
+}
+
 export interface ThemeProviderProps {
     children: React.ReactNode;
 }
 
 export function ThemeProvider({children}: ThemeProviderProps) {
-    const themeRef = useRef<ThemeInterface>();
+    const [mode, setMode] = useState<ThemeModes>(ThemeModes.Light);
+    const [scheme, setScheme] = useState<ThemeScheme>(ThemeModeSchemes[mode]);
+    const [schemeCss, setSchemeCss] = useState<string>(makeSchemeCss(scheme));
 
-    //TODO: revamp theming
+    const setModeHandler = useCallback((mode: ThemeModes) => {
+        setMode(mode);
+        if (mode === ThemeModes.Dark) {
+            document.documentElement.classList.add("dark");
+        } else {
+            document.documentElement.classList.remove("dark");
+        }
+        setScheme(ThemeModeSchemes[mode]);
+        setSchemeCss(makeSchemeCss(ThemeModeSchemes[mode]));
+        setUserModeFromStorage(mode);
+    }, []);
 
-    if (!themeRef.current) {
-        const theme = new Theme(ThemeModes.Light);
-        const prevSetMode = theme.setMode;
-        let inited = false;
-        theme.setMode = async (mode: ThemeModes) => {
-            const style = await THEME_MODE_TO_STYLE[mode]();
-            if (style) {
-                if (inited) {
-                    const previousStyle = await THEME_MODE_TO_STYLE[theme.getMode()]();
-                    if (previousStyle) {
-                        previousStyle.unuse();
-                    }
-                } else {
-                    inited = true;
-                }
-                style.use();
-                if (window.localStorage) {
-                    window.localStorage.setItem(THEME_STORAGE_KEY, mode);
-                }
-                prevSetMode.apply(theme, [mode]);
-            }
-        };
+    useEffect(() => {
+        setModeHandler(getUserModeFromStorage());
+    }, [setModeHandler]);
 
-        // init
-        theme.setMode(getUserMode());
-        themeRef.current = theme;
-    }
-
-    return <ThemeContext.Provider value={themeRef.current}>{children}</ThemeContext.Provider>;
+    return (
+        <ThemeContext.Provider
+            value={{
+                mode: mode,
+                scheme: scheme,
+                setMode: setModeHandler,
+            }}
+        >
+            <Head>
+                <style>{schemeCss}</style>
+            </Head>
+            {children}
+        </ThemeContext.Provider>
+    );
 }

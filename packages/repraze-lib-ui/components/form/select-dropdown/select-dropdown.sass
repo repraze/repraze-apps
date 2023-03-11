@@ -33,13 +33,13 @@
 
     &:hover
         .select-action
-            color: $primary-color
+            color: var(--color-primary)
 
     &.active,
     &.focus
         .select-dropdown-trigger,
         .select-dropdown-trigger:hover
-            box-shadow: 0 0 0 0.125rem darken(fade-out($primary-color, 0.66), 3%)
+            box-shadow: 0 0 0 0.125rem var(--color-primary-hard)
             border-color: $input-focus-border-color
 
     // sizings

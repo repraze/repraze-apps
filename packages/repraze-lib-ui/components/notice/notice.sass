@@ -1,5 +1,5 @@
 $notice-color: $font-color !default
-$notice-background-color: $component-secondary-color !default
+$notice-background-color: red !default
 $notice-padding-horizontal: 1em !default
 $notice-padding-vertical: 0.5em !default
 $notice-margin: 1em !default
@@ -31,10 +31,11 @@ $notice-margin: 1em !default
     // colors
     @each $name, $params in $colors
         $color: nth($params, 1)
-        $color-invert: nth($params, 2)
+        $color-overlay: nth($params, 2)
+
         &.#{$name}
             background-color: $color
-            color: $color-invert
+            color: $color-overlay
 
     .delete
         position: absolute

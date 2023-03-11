@@ -1,5 +1,5 @@
 $tag-color: $font-color !default
-$tag-background-color: $component-secondary-color !default
+$tag-background-color: red !default
 $tag-padding-horizontal: 0.75em
 
 .tag
@@ -31,7 +31,7 @@ $tag-padding-horizontal: 0.75em
             color: $tag-color
         &:focus,
         &.focus
-            box-shadow: 0 0 0 0.125rem darken(fade-out($primary-color, 0.66), 3%)
+            box-shadow: 0 0 0 0.125rem var(--color-primary-hard)
         &:active,
         &.active
             background-color: darken($tag-background-color, 7%)
@@ -50,25 +50,27 @@ $tag-padding-horizontal: 0.75em
     // colors
     @each $name, $params in $colors
         $color: nth($params, 1)
-        $color-invert: nth($params, 2)
+        $color-overlay: nth($params, 2)
+        $color-hard: nth($params, 4)
+
         &.#{$name}
             background-color: $color
-            color: $color-invert
+            color: $color-overlay
 
             &.action
                 &:hover,
                 &.hover,
                 &:focus,
                 &.focus
-                    background-color: darken(fade-in($color, 0.8), 3%)
-                    color: $color-invert
+                    background-color: $color-hard
+                    color: $color-overlay
                 &:focus,
                 &.focus
-                    box-shadow: 0 0 0 0.125rem darken(fade-out($color, 0.66), 3%)
+                    box-shadow: 0 0 0 0.125rem $color-hard
                 &:active,
                 &.active
-                    background-color: darken(fade-in($color, 0.8), 7%)
-                    color: $color-invert
+                    background-color: $color-hard
+                    color: $color-overlay
 
 .tags
     align-items: center

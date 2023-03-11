@@ -1,10 +1,10 @@
 import classnames from "classnames";
-import React, {HTMLAttributes, PropsWithoutRef, ReactNode} from "react";
-import {NavLink, NavLinkProps} from "react-router-dom";
+import React, {ElementType, HTMLAttributes, PropsWithoutRef, ReactNode} from "react";
 
 import {Colors, Sizes} from "../../constants";
+import {AsPropsWithoutRef} from "../../props";
 
-export interface TagProps<T> extends HTMLAttributes<T> {
+export interface TagProps {
     className?: string;
     size?: Sizes;
     color?: Colors;
@@ -12,31 +12,18 @@ export interface TagProps<T> extends HTMLAttributes<T> {
     children: ReactNode;
 }
 
-export function Tag({className, color, size, action, children, ...props}: TagProps<HTMLSpanElement>) {
-    return (
-        <span
-            className={classnames("tag", className, {
-                ...(size !== undefined && {[size]: size}),
-                ...(color !== undefined && {[color]: color}),
-                action: action,
-            })}
-            {...props}
-        >
-            {children}
-        </span>
-    );
-}
-
-export function NavTag({
+export function Tag<C extends ElementType = "span">({
+    as,
     className,
     color,
     size,
     action,
     children,
     ...props
-}: TagProps<HTMLAnchorElement> & PropsWithoutRef<NavLinkProps>) {
+}: AsPropsWithoutRef<TagProps, C>) {
+    const Component = as || "span";
     return (
-        <NavLink
+        <Component
             className={classnames("tag", className, {
                 ...(size !== undefined && {[size]: size}),
                 ...(color !== undefined && {[color]: color}),
@@ -45,22 +32,7 @@ export function NavTag({
             {...props}
         >
             {children}
-        </NavLink>
-    );
-}
-
-export function LinkTag({className, color, size, action, children, ...props}: TagProps<HTMLAnchorElement>) {
-    return (
-        <a
-            className={classnames("tag", className, {
-                ...(size !== undefined && {[size]: size}),
-                ...(color !== undefined && {[color]: color}),
-                action: action,
-            })}
-            {...props}
-        >
-            {children}
-        </a>
+        </Component>
     );
 }
 

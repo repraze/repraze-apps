@@ -1,10 +1,10 @@
 import {faDownload} from "@fortawesome/free-solid-svg-icons";
+import {Button} from "@repraze/lib-ui/components/button/button";
+import {Textarea} from "@repraze/lib-ui/components/form/textarea/textarea";
+import {Icon} from "@repraze/lib-ui/components/icon/icon";
+import {Media} from "@repraze/website-lib/types/media";
 import React, {useEffect, useState} from "react";
 
-import {Media} from "../../repraze-types/media";
-import {Button} from "../../repraze-ui-lib/components/button/button";
-import {Textarea} from "../../repraze-ui-lib/components/form/textarea/textarea";
-import {Icon} from "../../repraze-ui-lib/components/icon/icon";
 import {useApi} from "../providers/api";
 
 export interface MediaViewProps {

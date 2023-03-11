@@ -1,0 +1,28 @@
+@import "@repraze/lib-ui/core/variables.sass"
+
+@import "./theme-base"
+
+$color-scheme: dark
+
+// $primary: rgb(255, 23, 206)
+var(--color-primary): rgb(120, 90, 254)
+
+// $background-color: #0f0f1a
+// red: #1a1a2c
+// $component-color: #201f32
+
+$background-color: rgb(14, 18, 27)
+// red: rgb(21, 27, 40)
+// $component-color: rgb(21, 27, 40)
+red: rgb(18, 25, 39)
+$component-color: rgb(18, 25, 39)
+red: lighten($component-color, 7%)
+
+$font-color: rgb(197, 205, 219)
+$font-light-color: darken($font-color, 30%)
+$font-lighter-color: darken($font-color, 55%)
+$heading-font-color: $white
+
+$transparent-color: rgba(var(--color-bg), 0)
+
+@import "@repraze/lib-ui/ui.sass"

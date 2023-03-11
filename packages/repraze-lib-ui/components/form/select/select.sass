@@ -25,7 +25,7 @@
 
     &:hover
         .select-action
-            color: $primary-color
+            color: var(--color-primary)
 
     // sizings
     &.small
@@ -40,18 +40,22 @@
     // colors
     @each $name, $params in $colors
         $color: nth($params, 1)
+        $color-hard: nth($params, 4)
+
         &.#{$name}
             select
                 border-color: $color
 
-                &:active,
-                &:focus
-                    box-shadow: 0 0 0 0.125rem darken(fade-out($color, 0.66), 3%)
+                &:active:not(:disabled),
+                &:focus:not(:disabled)
+                    border-color: $color
+                    box-shadow: 0 0 0 0.125rem $color-hard
 
             &.active,
             &.focus
                 select
-                    box-shadow: 0 0 0 0.125rem darken(fade-out($color, 0.66), 3%)
+                    border-color: $color
+                    box-shadow: 0 0 0 0.125rem $color-hard
 
             &:hover
                 .select-action

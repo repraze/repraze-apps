@@ -1,12 +1,12 @@
 import {faTimes} from "@fortawesome/free-solid-svg-icons";
+import {Button} from "@repraze/lib-ui/components/button/button";
+import {Icon} from "@repraze/lib-ui/components/icon/icon";
+import {Notice, useNotice} from "@repraze/lib-ui/components/notice/notice";
+import {Colors} from "@repraze/lib-ui/constants";
+import "@repraze/lib-utils/id";
+import {generateId} from "@repraze/lib-utils/id";
+import {delay} from "@repraze/lib-utils/timing";
 import React, {ReactNode, useMemo} from "react";
-
-import {Button} from "../../repraze-ui-lib/components/button/button";
-import {Icon} from "../../repraze-ui-lib/components/icon/icon";
-import {Notice, useNotice} from "../../repraze-ui-lib/components/notice/notice";
-import {Colors} from "../../repraze-ui-lib/constants";
-import {generateId} from "../../repraze-utils/id";
-import {delay} from "../../repraze-utils/timing";
 
 export enum NoticeMessageTypes {
     Notification = "notification",

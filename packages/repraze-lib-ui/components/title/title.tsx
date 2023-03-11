@@ -29,6 +29,7 @@ export interface TitleAnchorProps {
 }
 
 export function TitleAnchor({className, toId, ...props}: TitleAnchorProps) {
+    //TODO: as prop?
     return (
         <a className={classnames("anchor", className)} href={`#${toId}`}>
             <Icon icon={faLink} fixedWidth size={Sizes.Small} />

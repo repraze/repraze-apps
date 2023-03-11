@@ -1,11 +1,7 @@
 @use "sass:math"
 
-$font-color: black
-$component-secondary-color: red
-$primary-color: blue
-
 $button-color: $font-color !default
-$button-background-color: $component-secondary-color !default
+$button-background-color: red !default
 $button-padding-horizontal: 1em !default
 $button-padding-vertical: calc(0.5em - 1px) !default
 
@@ -18,7 +14,7 @@ $button-padding-vertical: calc(0.5em - 1px) !default
 
     position: relative
     border: 1px solid transparent
-    background-color: $button-background-color
+    background-color: var(--color-ui)
     color: $button-color
     justify-content: center
     text-align: center
@@ -39,14 +35,14 @@ $button-padding-vertical: calc(0.5em - 1px) !default
     &.hover,
     &:focus,
     &.focus
-        background-color: darken($button-background-color, 3%)
+        background-color: var(--color-ui-light)
         color: $button-color
     &:focus,
     &.focus
-        box-shadow: 0 0 0 0.125rem darken(fade-out($primary-color, 0.66), 3%)
+        box-shadow: 0 0 0 0.125rem var(--color-primary-dark)
     &:active,
     &.active
-        background-color: darken($button-background-color, 7%)
+        background-color: var(--color-ui-dark)
     &:disabled
         opacity: 50%
         cursor: default
@@ -85,27 +81,30 @@ $button-padding-vertical: calc(0.5em - 1px) !default
     &.large
         font-size: 1.5rem
 
-    // // colors
-    // @each $name, $params in $colors
-    //     $color: nth($params, 1)
-    //     $color-invert: nth($params, 2)
-    //     &.#{$name}
-    //         background-color: $color
-    //         color: $color-invert
+    // colors
+    @each $name, $params in $colors
+        $color: nth($params, 1)
+        $color-overlay: nth($params, 2)
+        $color-soft: nth($params, 3)
+        $color-hard: nth($params, 4)
 
-    //         &:hover,
-    //         &.hover,
-    //         &:focus,
-    //         &.focus
-    //             background-color: darken(fade-in($color, 0.8), 3%)
-    //             color: $color-invert
-    //         &:focus,
-    //         &.focus
-    //             box-shadow: 0 0 0 0.125rem darken(fade-out($color, 0.66), 3%)
-    //         &:active,
-    //         &.active
-    //             background-color: darken(fade-in($color, 0.8), 7%)
-    //             color: $color-invert
+        &.#{$name}
+            background-color: $color
+            color: $color-overlay
+
+            &:hover,
+            &.hover,
+            &:focus,
+            &.focus
+                background-color: $color-soft
+                color: $color-overlay
+            &:focus,
+            &.focus
+                box-shadow: 0 0 0 0.125rem $color-hard
+            &:active,
+            &.active
+                background-color: $color-hard
+                color: $color-overlay
 
     &.fullwidth
         display: flex

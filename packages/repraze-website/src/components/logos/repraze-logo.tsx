@@ -13,3 +13,5 @@ export function ReprazeLogo({...props}: ReprazeLogoProps) {
         </svg>
     );
 }
+
+// TODO: logo not centered vertically

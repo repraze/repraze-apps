@@ -19,6 +19,7 @@
     // colors
     @each $name, $params in $colors
         $color: nth($params, 1)
+
         &.#{$name}
             color: $color
 
