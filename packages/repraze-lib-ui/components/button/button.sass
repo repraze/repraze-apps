@@ -6,106 +6,108 @@ $button-padding-horizontal: 1em !default
 $button-padding-vertical: calc(0.5em - 1px) !default
 
 .button
-    align-items: flex-start
-    display: inline-flex
-    white-space: nowrap
-    text-overflow: ellipsis
-    vertical-align: top
+    @extend %element-root-button
 
-    position: relative
-    border: 1px solid transparent
-    background-color: var(--color-ui)
-    color: $button-color
-    justify-content: center
-    text-align: center
-    cursor: pointer
-    padding-left: $button-padding-horizontal
-    padding-right: $button-padding-horizontal
-    padding-top: $button-padding-vertical
-    padding-bottom: $button-padding-vertical
-    font-size: 1rem
-    font-family: inherit
-    outline: none
-    height: 2.5em
-    line-height: 1.5
-    max-width: 100%
+    // display: inline-flex
+    // align-items: flex-start
+    // white-space: nowrap
+    // text-overflow: ellipsis
+    // vertical-align: top
 
-    // states
-    &:hover,
-    &.hover,
-    &:focus,
-    &.focus
-        background-color: var(--color-ui-light)
-        color: $button-color
-    &:focus,
-    &.focus
-        box-shadow: 0 0 0 0.125rem var(--color-primary-dark)
-    &:active,
-    &.active
-        background-color: var(--color-ui-dark)
-    &:disabled
-        opacity: 50%
-        cursor: default
-        pointer-events: none
+    // position: relative
+    // border: 1px solid transparent
+    // background-color: var(--color-ui)
+    // color: $button-color
+    // justify-content: center
+    // text-align: center
+    // cursor: pointer
+    // padding-left: $button-padding-horizontal
+    // padding-right: $button-padding-horizontal
+    // padding-top: $button-padding-vertical
+    // padding-bottom: $button-padding-vertical
+    // font-size: 1rem
+    // font-family: inherit
+    // outline: none
+    // height: 2.5em
+    // line-height: 1.5
+    // max-width: 100%
 
-    .icon
-        height: 1.5em
-        width: 1.5em
-        &:first-child:last-child // only icon
-            margin-left: calc(-#{math.div($button-padding-horizontal, 2)} - 1px)
-            margin-right: calc(-#{math.div($button-padding-horizontal, 2)} - 1px)
+    // // states
+    // &:hover,
+    // &.hover,
+    // &:focus,
+    // &.focus
+    //     background-color: var(--color-ui-light)
+    //     color: $button-color
+    // &:focus,
+    // &.focus
+    //     box-shadow: 0 0 0 0.125rem var(--color-primary-dark)
+    // &:active,
+    // &.active
+    //     background-color: var(--color-ui-dark)
+    // &:disabled
+    //     opacity: 50%
+    //     cursor: default
+    //     pointer-events: none
 
-        &:first-child:not(:last-child) // left icon
-            margin-left: calc(-#{math.div($button-padding-horizontal, 2)} - 1px)
-            margin-right: 0.25em
+    // .icon
+    //     height: 1.5em
+    //     width: 1.5em
+    //     &:first-child:last-child // only icon
+    //         margin-left: calc(-#{math.div($button-padding-horizontal, 2)} - 1px)
+    //         margin-right: calc(-#{math.div($button-padding-horizontal, 2)} - 1px)
 
-        &:last-child:not(:first-child) // right icon
-            margin-left: 0.25em
-            margin-right: calc(-#{math.div($button-padding-horizontal, 2)} - 1px)
+    //     &:first-child:not(:last-child) // left icon
+    //         margin-left: calc(-#{math.div($button-padding-horizontal, 2)} - 1px)
+    //         margin-right: 0.25em
 
-    .loader-icon
-        color: $button-color
-        position: absolute
-        transform: translate(-50%,-50%)
-        left: 50%
-        top: 50%
-        margin: 0 !important
+    //     &:last-child:not(:first-child) // right icon
+    //         margin-left: 0.25em
+    //         margin-right: calc(-#{math.div($button-padding-horizontal, 2)} - 1px)
 
-    // sizings
-    &.small
-        font-size: 0.75rem
-    &.normal
-        font-size: 1rem
-    &.medium
-        font-size: 1.25rem
-    &.large
-        font-size: 1.5rem
+    // .loader-icon
+    //     color: $button-color
+    //     position: absolute
+    //     transform: translate(-50%,-50%)
+    //     left: 50%
+    //     top: 50%
+    //     margin: 0 !important
 
-    // colors
-    @each $name, $params in $colors
-        $color: nth($params, 1)
-        $color-overlay: nth($params, 2)
-        $color-soft: nth($params, 3)
-        $color-hard: nth($params, 4)
+    // // sizings
+    // &.small
+    //     font-size: 0.75rem
+    // &.normal
+    //     font-size: 1rem
+    // &.medium
+    //     font-size: 1.25rem
+    // &.large
+    //     font-size: 1.5rem
 
-        &.#{$name}
-            background-color: $color
-            color: $color-overlay
+    // // colors
+    // @each $name, $params in $colors
+    //     $color: nth($params, 1)
+    //     $color-overlay: nth($params, 2)
+    //     $color-soft: nth($params, 3)
+    //     $color-hard: nth($params, 4)
 
-            &:hover,
-            &.hover,
-            &:focus,
-            &.focus
-                background-color: $color-soft
-                color: $color-overlay
-            &:focus,
-            &.focus
-                box-shadow: 0 0 0 0.125rem $color-hard
-            &:active,
-            &.active
-                background-color: $color-hard
-                color: $color-overlay
+    //     &.#{$name}
+    //         background-color: $color
+    //         color: $color-overlay
 
-    &.fullwidth
-        display: flex
-        width: 100%
+    //         &:hover,
+    //         &.hover,
+    //         &:focus,
+    //         &.focus
+    //             background-color: $color-soft
+    //             color: $color-overlay
+    //         &:focus,
+    //         &.focus
+    //             box-shadow: 0 0 0 0.125rem $color-hard
+    //         &:active,
+    //         &.active
+    //             background-color: $color-hard
+    //             color: $color-overlay
+
+    // &.fullwidth
+    //     display: flex
+    //     width: 100%

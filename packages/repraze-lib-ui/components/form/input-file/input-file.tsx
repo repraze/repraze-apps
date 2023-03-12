@@ -161,14 +161,9 @@ export const InputFile = forwardRef<HTMLInputElement, InputFileProps>(function I
             />
             <Field expanded>
                 <Control expanded={dropper}>
-                    <Button
-                        className={classnames("input-file-handle", {focus})}
-                        size={size}
-                        color={color}
-                        tabIndex={-1}
-                    >
+                    <button className="input-file-handle" tabIndex={-1}>
                         {children}
-                    </Button>
+                    </button>
                 </Control>
                 {!dropper && (
                     <Control expanded>

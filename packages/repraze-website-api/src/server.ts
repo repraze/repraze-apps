@@ -31,7 +31,7 @@ app.use("/api/v1", apiRouter);
 app.use("/medias", mediasServiceRouter);
 
 export async function connectDatabase() {
-    const mongoURI = "mongodb://172.20.224.1/repraze"; // cat /etc/resolv.conf
+    const mongoURI = "mongodb://172.23.176.1/repraze"; // cat /etc/resolv.conf
     mongoose.set("strictQuery", true);
     mongoose.connection.on("error", (message) => logger.error(message));
     const connection = await mongoose.connect(mongoURI);

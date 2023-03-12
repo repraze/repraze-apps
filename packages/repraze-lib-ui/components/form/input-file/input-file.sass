@@ -1,4 +1,5 @@
 .input-file
+    @extend %element-root
     position: relative
     overflow: hidden
 
@@ -23,6 +24,7 @@
             pointer-events: none
 
     .input-file-handle
+        @extend %element-child-button
         z-index: 2
         box-shadow: none !important
 
@@ -45,20 +47,6 @@
         box-shadow: 0 0 0 0.125rem var(--color-primary-hard)
         .input-file-name
             border-color: $input-focus-border-color
-
-    // sizings
-    &.small
-        .input-file-name
-            font-size: 0.75rem
-    &.normal
-        .input-file-name
-            font-size: 1rem
-    &.medium
-        .input-file-name
-            font-size: 1.25rem
-    &.large
-        .input-file-name
-            font-size: 1.5rem
 
     // colors
     @each $name, $params in $colors
